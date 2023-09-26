@@ -7,40 +7,37 @@ import org.testng.annotations.Test;
 import packageName.driver.DriverSingleton;
 import packageName.pages.StartPage;
 
-import static com.google.common.base.CharMatcher.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class StartPageTest {
 
-    protected WebDriver driver;
     public static final String CODE = "Hello from WebDriver";
+    protected WebDriver driver;
 
     @BeforeMethod()
-    public void setUp()
-    {
+    public void setUp() {
         driver = DriverSingleton.getDriver();
     }
 
     @AfterMethod(alwaysRun = true)
-    public void stopBrowser()
-    {
+    public void stopBrowser() {
         DriverSingleton.closeDriver();
     }
 
     @Test
-    public void userCanWriteCode(){
-    String codeInput = new StartPage(driver)
-            .openPage()
-            .clickAgreeButton()
-            .writeInInputField();
+    public void userCanWriteCode() {
+        String codeInput = new StartPage(driver)
+                .openPage()
+                .clickAgreeButton()
+                .writeInInputField();
 
 
         assertThat(codeInput, equalTo(CODE));
     }
 
     @Test
-    public void userCanSelectExpiry(){
+    public void userCanSelectExpiry() {
         String expiry = new StartPage(driver)
                 .openPage()
                 .clickAgreeButton()
@@ -49,7 +46,7 @@ public class StartPageTest {
     }
 
     @Test
-    public void userCanNamePasteBin(){
+    public void userCanNamePasteBin() {
         boolean filled = new StartPage(driver)
                 .openPage()
                 .clickAgreeButton()
