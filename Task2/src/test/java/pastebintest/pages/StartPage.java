@@ -1,6 +1,7 @@
 package pastebintest.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -19,17 +20,20 @@ public class StartPage {
             "git push origin master --force\n";
     private static final String TITLE = "how to gain dominance among developers";
     private final WebDriver driver;
+
+    JavascriptExecutor js;
     @FindBy(xpath = "//*[@id='postform-name']")
     WebElement nameField;
+    @FindBy(xpath = "//*[@id='w0']/div[5]/div[1]/div[10]/button")
+    List<WebElement> submitButton;
+    @FindBy(xpath = "//input[@class = 'js-live-code-highlight']")
+    WebElement toggle;
     @FindBy(xpath = "//*[@id='postform-text']")
     private WebElement pasteTextArea;
 
-    @FindBy(xpath = "//*[@id='w0']/div[5]/div[1]/div[10]/button")
-    List<WebElement> submitButton;
-
     public StartPage(WebDriver driver) {
         this.driver = driver;
-
+        js = (JavascriptExecutor) driver;
         PageFactory.initElements(driver, this);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
@@ -48,6 +52,16 @@ public class StartPage {
         wait.pollingEvery(Duration.ofMillis(100));
         List<WebElement> agreeButton = driver.findElements(By.cssSelector(".css-47sehv"));
         agreeButton.get(0).click();
+        return this;
+    }
+
+    public StartPage toogleSyntaxSwitch() {
+        WebElement closeCookie = driver.findElement(By.xpath("//span[@class = 'cookie-button js-close-cookies']"));
+        closeCookie.click();
+
+        WebElement closeOtherCookie = driver.findElement(By.xpath("//div[@title = 'Close Me']"));
+        closeOtherCookie.click();
+        //toggle.click();
         return this;
     }
 
@@ -73,7 +87,7 @@ public class StartPage {
 
     }
 
-    public void submitPaste(){
+    public void submitPaste() {
 
         submitButton.get(0).click();
     }
