@@ -16,15 +16,18 @@ public class StartPage {
             "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
             "git push origin master --force\n";
     private static final String TITLE = "how to gain dominance among developers";
+    private static final String SYNTAX = "bash";
     private final WebDriver driver;
 
     JavascriptExecutor js;
+
+
     @FindBy(xpath = "//*[@id='postform-name']")
     WebElement nameField;
     @FindBy(xpath = "//*[@id='w0']/div[5]/div[1]/div[10]/button")
     List<WebElement> submitButton;
-    @FindBy(xpath = "//input[@class = 'js-live-code-highlight']")
-    WebElement toggle;
+    @FindBy(xpath = "//div[@class = 'toggle__control']")
+    WebElement toggleControl;
     @FindBy(xpath = "//*[@id='postform-text']")
     private WebElement pasteTextArea;
 
@@ -58,14 +61,24 @@ public class StartPage {
 
         WebElement closeOtherCookie = driver.findElement(By.xpath("//div[@title = 'Close Me']"));
         closeOtherCookie.click();
-        
+
+
+        toggleControl.click();
+
+
+        return this;
+    }
+
+    public StartPage selectSyntax(){
+
         WebElement syntaxHighLightDropdown = driver.findElement(By.xpath("//span[@id = 'select2-postform-format-container']"));
         syntaxHighLightDropdown.click();
         WebElement inputSyntaxField = driver.findElement(By.xpath("// input [@class='select2-search__field']"));
 
-        inputSyntaxField.sendKeys("bash");
+        inputSyntaxField.sendKeys(SYNTAX);
         inputSyntaxField.sendKeys(Keys.ENTER);
         return this;
+
     }
 
     public StartPage writeCodeInInputField() {
@@ -76,13 +89,10 @@ public class StartPage {
 
     public StartPage selectExpiry() {
 
-
         WebElement expiryContainer = driver.findElement(By.id("select2-postform-expiration-container"));
-
         expiryContainer.click();
         Actions actions = new Actions(driver);
         WebElement option = driver.findElement(By.xpath("//ul[contains(@class, 'select2-results__options')]/li[3]"));
-
         actions.moveToElement(option).click().perform();
         return this;
     }
