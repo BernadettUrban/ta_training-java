@@ -108,10 +108,18 @@ public class StartPage {
 
     }
 
-    public StartPage submitPaste() {
+    public boolean submitPaste() {
+        if (submitButton.get(0).isDisplayed()) {
+            submitButton.get(0).click();
+            return true;
+        }
+        return false;
+    }
 
-        submitButton.get(0).click();
-        return this;
+    public String getNewUrl(){
+        String url = driver.getCurrentUrl();
+        System.out.println(url);
+        return url;
     }
 
 }
