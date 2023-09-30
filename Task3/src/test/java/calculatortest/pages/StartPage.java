@@ -25,9 +25,22 @@ public class StartPage extends AbstractPage{
         return this;
     }
 
-    public void performSearch(){
+    public StartPage performSearch(){
         searchBar.click();
         searchBar.sendKeys(QUERY);
         searchBar.sendKeys(Keys.ENTER);
+        return this;
     }
+
+    public String getUrl(){
+        String url = driver.getCurrentUrl();
+        return url;
+    }
+
+    public SearchResult goToSearchResult(){
+        SearchResult searchResult = new SearchResult(driver);
+        return searchResult;
+    }
+
+
 }
