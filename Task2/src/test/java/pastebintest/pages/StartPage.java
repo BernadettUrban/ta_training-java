@@ -8,22 +8,15 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.FluentWait;
+import pastebintest.util.StringUtils;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class StartPage {
-    private static final String BASE_URL = "https://pastebin.com/";
-    private static final String CODE = "git config --global user.name  \"New Sheriff in Town\"\n" +
-            "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
-            "git push origin master --force\n";
-    private static final String TITLE = "how to gain dominance among developers";
-    private static final String SYNTAX = "bash";
+    public final StringUtils stringUtils = new StringUtils();
     private final WebDriver driver;
-
-    // JavascriptExecutor js;
-
 
     @FindBy(xpath = "//*[@id='postform-name']")
     WebElement nameField;
@@ -32,7 +25,7 @@ public class StartPage {
     @FindBy(xpath = "//div[@class = 'toggle__control']")
     WebElement toggleControl;
     @FindBy(xpath = "//*[@class = 'textarea -form js-paste-code']")
-    private WebElement pasteTextArea;
+    WebElement pasteTextArea;
 
     public StartPage(WebDriver driver) {
         this.driver = driver;
@@ -44,7 +37,7 @@ public class StartPage {
     }
 
     public StartPage openPage() {
-        driver.get(BASE_URL);
+        driver.get(stringUtils.BASE_URL);
         return this;
     }
 
@@ -79,14 +72,14 @@ public class StartPage {
         syntaxHighLightDropdown.click();
 
         WebElement inputSyntaxField = driver.findElement(By.xpath("// input [@class='select2-search__field']"));
-        inputSyntaxField.sendKeys(SYNTAX);
+        inputSyntaxField.sendKeys(stringUtils.SYNTAX);
         inputSyntaxField.sendKeys(Keys.ENTER);
         return this;
     }
 
     public StartPage writeCodeInInputField() {
         pasteTextArea.click();
-        pasteTextArea.sendKeys(CODE);
+        pasteTextArea.sendKeys(stringUtils.CODE);
         return this;
     }
 
@@ -103,7 +96,7 @@ public class StartPage {
     }
 
     public StartPage enterPasteName() {
-        nameField.sendKeys(TITLE);
+        nameField.sendKeys(stringUtils.TITLE);
         return this;
 
     }
@@ -117,9 +110,16 @@ public class StartPage {
     }
 
     public String getNewUrl(){
-        String url = driver.getCurrentUrl();
-        System.out.println(url);
+        String url = "";
+        if (submitButton.get(0).isDisplayed()) {
+            submitButton.get(0).click();
+            url = driver.getCurrentUrl();
+        }
         return url;
     }
 
+    public ResultPage savePaste(){
+        ResultPage resultPage = new ResultPage(driver);
+        return resultPage;
+    }
 }
