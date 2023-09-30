@@ -1,4 +1,4 @@
-package calculatortest.pages;
+package calculatortest.googlepricecalculatorpages;
 
 import org.openqa.selenium.WebDriver;
 

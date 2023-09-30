@@ -1,36 +1,34 @@
 package calculatortest.test;
 
 import calculatortest.driver.DriverSingleton;
+import calculatortest.googlepricecalculatorpages.CalculatorPage;
 import calculatortest.googlepricecalculatorpages.StartPage;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class StartPageTest {
+public class CalculatorPageTest {
     protected WebDriver driver;
-    private StartPage startPage;
+    private CalculatorPage calculatorPage;
+    StartPage startPage;
 
     @BeforeTest()
     public void setUp() {
         driver = DriverSingleton.getDriver();
 
-        startPage = new StartPage(driver);
-        startPage.openPage();
+        calculatorPage = new CalculatorPage(driver);
+        calculatorPage.openPage();
+        calculatorPage.clickOkButton();
 
     }
 
-    @AfterMethod(alwaysRun = true)
+    // @AfterMethod(alwaysRun = true)
     public void stopBrowser() {
         DriverSingleton.closeDriver();
     }
-
     @Test
-    public void search(){
-        String url =
-        startPage.performSearch()
-                .getUrl();
-        System.out.println(url);
+    public void something(){
+        calculatorPage.getIframe()
+                .addSpecifications();
     }
-
 }

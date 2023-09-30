@@ -1,4 +1,4 @@
-package calculatortest.pages;
+package calculatortest.googlepricecalculatorpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +13,7 @@ public class CalculatorPage extends AbstractPage{
     public static final String BASE_URL ="https://cloud.google.com/products/calculator";
     private int noOfInstances = 4;
 
-   
+
     @FindBy(xpath = "//*[@id='tab-item-1']/div")
     WebElement computeEngine;
 
@@ -51,12 +51,13 @@ public class CalculatorPage extends AbstractPage{
         okButton.click();
         return this;
     }
-    public void getIframe() {
+    public CalculatorPage getIframe() {
         final List<WebElement> iframes = driver.findElements(By.cssSelector("iframe"));
         String name = iframes.get(0).getAttribute("name");
         driver.switchTo().frame(name);
 
         driver.switchTo().frame("myFrame");
+        return this;
 
     }
     public void addSpecifications(){
