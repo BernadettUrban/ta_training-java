@@ -59,19 +59,26 @@ public class CalculatorPageTest {
     @Test
     public void insertEmailIntoForm() throws IOException, UnsupportedFlavorException {
         emailGeneratorPage = new EmailGeneratorPage(driver);
-        WebDriver newWindow = driver.switchTo().newWindow(WindowType.TAB);
-        newWindow.get(stringUtils.BASE_URL_FOR_EMAIL_GENERATOR);
+        //Store the ID of the original window
+        String originalWindow = driver.getWindowHandle();
+
+
+        WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
+        newTab.get(stringUtils.BASE_URL_FOR_EMAIL_GENERATOR);
 
         emailGeneratorPage.clickAgreeButton();
         emailGeneratorPage.copyEmailToClipBoard();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
-        String result = (String) clipboard.getData(DataFlavor.stringFlavor);
+        String email = (String) clipboard.getData(DataFlavor.stringFlavor);
 
-        //System.out.println("String from Clipboard:" + result);
-        boolean resultIsEmpty = false;
+        driver.switchTo().window(originalWindow);
 
-        assertThat(Boolean.valueOf(result.isEmpty()), equalTo(resultIsEmpty));
+        estimate.sendEstimateInEmail(email);
+        boolean emailIsEmpty = false;
+
+
+        assertThat(Boolean.valueOf(email.isEmpty()), equalTo(emailIsEmpty));
 
 
     }

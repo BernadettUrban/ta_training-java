@@ -33,10 +33,12 @@ public class Estimate extends AbstractPage{
         return totalEstimatedCost.getText();
     }
 
-    public Estimate sendEstimateInEmail(){
+    public Estimate sendEstimateInEmail(String email){
         WebElement emailField = driver.findElement(By.xpath("//*[@id='input_615']"));
+        emailField.click();
+        emailField.sendKeys(email);
         WebElement sendEmailButton = driver.findElement(By.xpath("//*[@id='dialogContent_621']/form/md-dialog-actions/button[2]"));
-
+        sendEmailButton.click();
         return this;
     }
 
