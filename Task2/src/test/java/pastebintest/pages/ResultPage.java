@@ -19,7 +19,7 @@ public class ResultPage {
     private WebElement syntax;
 
     @FindBy(xpath = "/html/body/div[1]/div[2]/div[1]/div[1]/div[4]/div[2]/ol")
-    private  List<WebElement> code;
+    private List<WebElement> code;
 
     public ResultPage(WebDriver driver) {
         this.driver = driver;
@@ -27,11 +27,12 @@ public class ResultPage {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title.getText();
     }
 
-    public String getSyntax(){
+    public String getSyntax() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return syntax.getText();
     }
 

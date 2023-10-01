@@ -1,7 +1,6 @@
 package pastebintest.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -38,12 +37,10 @@ public class StartPage {
 
         PageFactory.initElements(driver, this);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-
     }
 
     public StartPage openPage() {
-        driver.get(stringUtils.BASE_URL);
+        driver.get(StringUtils.BASE_URL);
         return this;
     }
 
@@ -57,7 +54,7 @@ public class StartPage {
         return this;
     }
 
-    public StartPage closePopups(){
+    public StartPage closePopups() {
         FluentWait wait = new FluentWait(driver);
         wait.withTimeout(Duration.ofSeconds(4000));
         wait.pollingEvery(Duration.ofMillis(100));
@@ -71,7 +68,7 @@ public class StartPage {
         return this;
     }
 
-    public StartPage toogleSyntaxSwitch() {
+    public StartPage toggleSyntaxSwitch() {
 
         toggleControl.click();
         return this;
@@ -85,17 +82,14 @@ public class StartPage {
         bannerElement.click();
 
         Actions actions = new Actions(driver);
-        //syntaxHighLightDropdown.click();
         actions.moveToElement(syntaxHighLightDropdown).click();
-
-      new Actions(driver).moveToElement(inputSyntaxField).click();
-       // inputSyntaxField.click();
+        new Actions(driver).moveToElement(inputSyntaxField).click();
         return this;
     }
 
     public StartPage writeCodeInInputField() {
         pasteTextArea.click();
-        pasteTextArea.sendKeys(stringUtils.CODE);
+        pasteTextArea.sendKeys(StringUtils.CODE);
         return this;
     }
 
@@ -112,7 +106,7 @@ public class StartPage {
     }
 
     public StartPage enterPasteName() {
-        nameField.sendKeys(stringUtils.TITLE);
+        nameField.sendKeys(StringUtils.TITLE);
         return this;
 
     }
@@ -124,7 +118,7 @@ public class StartPage {
     }
 
 
-    public ResultPage savePaste(){
+    public ResultPage savePaste() {
         return new ResultPage(driver);
     }
 
