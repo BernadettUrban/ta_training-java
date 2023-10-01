@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.concurrent.TimeUnit;
+
 public class DriverSingleton {
     private static WebDriver driver;
     private static final String PATHTOBRAVE = "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe";
@@ -15,8 +17,8 @@ public class DriverSingleton {
     public static WebDriver getDriver() {
         if (null == driver) {
             WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions().setBinary(PATHTOBRAVE);
-            driver = new ChromeDriver(options);
+            //ChromeOptions options = new ChromeOptions().setBinary(PATHTOBRAVE);
+            driver = new ChromeDriver();
         }
         driver.manage().window().maximize();
 

@@ -13,13 +13,13 @@ public class ResultPage {
 
 
     @FindBy(xpath = "//h1")
-    WebElement title;
+    private WebElement title;
 
     @FindBy(xpath = "//a[@class = 'btn -small h_800']")
-    WebElement syntax;
+    private WebElement syntax;
 
     @FindBy(xpath = "/html/body/div[1]/div[2]/div[1]/div[1]/div[4]/div[2]/ol")
-    List<WebElement> code;
+    private  List<WebElement> code;
 
     public ResultPage(WebDriver driver) {
         this.driver = driver;
@@ -36,10 +36,10 @@ public class ResultPage {
     }
 
     public String getCode() {
-        String answer = "";
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < code.size(); i++) {
-            answer+= code.get(i).getText();
+            sb.append(code.get(i).getText());
         }
-        return answer;
+        return sb.toString();
     }
 }

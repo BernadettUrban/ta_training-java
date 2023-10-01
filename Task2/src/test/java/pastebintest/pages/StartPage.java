@@ -15,17 +15,23 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class StartPage {
-    public final StringUtils stringUtils = new StringUtils();
+    private final StringUtils stringUtils = new StringUtils();
     private final WebDriver driver;
 
     @FindBy(xpath = "//*[@id='postform-name']")
-    WebElement nameField;
+    private WebElement nameField;
     @FindBy(xpath = "//*[@id='w0']/div[5]/div[1]/div[10]/button")
-    List<WebElement> submitButton;
+    private List<WebElement> submitButton;
     @FindBy(xpath = "//div[@class = 'toggle__control']")
-    WebElement toggleControl;
+    private WebElement toggleControl;
     @FindBy(xpath = "//*[@class = 'textarea -form js-paste-code']")
-    WebElement pasteTextArea;
+    private WebElement pasteTextArea;
+
+    @FindBy(xpath = "//span[@id = 'select2-postform-format-container']")
+    private WebElement syntaxHighLightDropdown;
+
+    @FindBy(xpath = "//ul/li[text()[contains(.,'Bash')]]")
+    private WebElement inputSyntaxField;
 
     public StartPage(WebDriver driver) {
         this.driver = driver;
@@ -51,7 +57,7 @@ public class StartPage {
         return this;
     }
 
-    public StartPage toogleSyntaxSwitch() {
+    public StartPage closePopups(){
         FluentWait wait = new FluentWait(driver);
         wait.withTimeout(Duration.ofSeconds(4000));
         wait.pollingEvery(Duration.ofMillis(100));
@@ -62,18 +68,28 @@ public class StartPage {
 
         WebElement closeOtherCookie = driver.findElement(By.xpath("//div[@title = 'Close Me']"));
         closeOtherCookie.click();
+        return this;
+    }
+
+    public StartPage toogleSyntaxSwitch() {
+
         toggleControl.click();
         return this;
     }
 
     public StartPage selectSyntax() {
-        WebElement syntaxHighLightDropdown = driver.findElement
-                (By.xpath("//span[@id = 'select2-postform-format-container']"));
-        syntaxHighLightDropdown.click();
+        FluentWait wait = new FluentWait(driver);
+        wait.withTimeout(Duration.ofSeconds(4000));
+        wait.pollingEvery(Duration.ofMillis(100));
+        WebElement bannerElement = driver.findElement(By.cssSelector("#hideSlideBanner > svg > path"));
+        bannerElement.click();
 
-        WebElement inputSyntaxField = driver.findElement(By.xpath("// input [@class='select2-search__field']"));
-        inputSyntaxField.sendKeys(stringUtils.SYNTAX);
-        inputSyntaxField.sendKeys(Keys.ENTER);
+        Actions actions = new Actions(driver);
+        //syntaxHighLightDropdown.click();
+        actions.moveToElement(syntaxHighLightDropdown).click();
+
+      new Actions(driver).moveToElement(inputSyntaxField).click();
+       // inputSyntaxField.click();
         return this;
     }
 
@@ -101,25 +117,16 @@ public class StartPage {
 
     }
 
-    public boolean submitPaste() {
-        if (submitButton.get(0).isDisplayed()) {
-            submitButton.get(0).click();
-            return true;
-        }
-        return false;
+    public StartPage submitPaste() {
+        submitButton.get(0).click();
+        return this;
+
     }
 
-    public String getNewUrl(){
-        String url = "";
-        if (submitButton.get(0).isDisplayed()) {
-            submitButton.get(0).click();
-            url = driver.getCurrentUrl();
-        }
-        return url;
-    }
 
     public ResultPage savePaste(){
-        ResultPage resultPage = new ResultPage(driver);
-        return resultPage;
+        return new ResultPage(driver);
     }
+
+
 }
