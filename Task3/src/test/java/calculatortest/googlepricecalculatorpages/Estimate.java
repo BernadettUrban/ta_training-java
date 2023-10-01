@@ -1,5 +1,6 @@
 package calculatortest.googlepricecalculatorpages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,13 @@ public class Estimate extends AbstractPage{
 
     public String totalEstimatedCost() {
         return totalEstimatedCost.getText();
+    }
+
+    public Estimate sendEstimateInEmail(){
+        WebElement emailField = driver.findElement(By.xpath("//*[@id='input_615']"));
+        WebElement sendEmailButton = driver.findElement(By.xpath("//*[@id='dialogContent_621']/form/md-dialog-actions/button[2]"));
+
+        return this;
     }
 
 }
