@@ -32,13 +32,13 @@ public class CalculatorPageTest {
         DriverSingleton.closeDriver();
     }
     @Test
-    public void something(){
+    public void estimatedCostIsCalculatedCorrectly(){
        estimate =  calculatorPage.getIframe()
                 .addSpecifications();
 
        String actual = estimate.totalEstimatedCost();
        String expected = "Total Estimated Cost: USD 1,081.20 per 1 month";
-       
+
         assertThat(actual, equalTo(expected));
     }
 }
