@@ -14,6 +14,6 @@ public abstract class AbstractPage
     protected AbstractPage(WebDriver driver)
     {
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+
     }
 }
