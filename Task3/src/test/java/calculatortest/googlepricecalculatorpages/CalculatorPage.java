@@ -48,6 +48,7 @@ public class CalculatorPage extends AbstractPage {
 
     public CalculatorPage clickOkButton() {
         WebElement okButton = driver.findElement(By.xpath("/html/body/devsite-snackbar/div/div/button"));
+        waitForClickablility(okButton, Duration.ofSeconds(5));
         okButton.click();
         return this;
     }
@@ -67,11 +68,12 @@ public class CalculatorPage extends AbstractPage {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void addSpecifications() {
+    public Estimate addSpecifications() {
         quantity.sendKeys("4");
         series.click();
         WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
-        waitForClickablility(seriesOption, Duration.ofSeconds(10));
+        //waitForClickablility(seriesOption, Duration.ofSeconds(10));
+        //new Actions(driver).moveToElement(seriesOption).click().perform();
         seriesOption.click();
         machineType.click();
         WebElement machine = driver.findElement(By.id("select_option_469"));
@@ -116,6 +118,11 @@ public class CalculatorPage extends AbstractPage {
 
         waitForClickablility(usageOption, Duration.ofSeconds(10));
         usageOption.click();
+
+        WebElement addToEstimateButton = driver.findElement(By.xpath("//*[@id='mainForm']/div[2]/div/md-card/md-card-content/div/div[1]/form/div[20]/button"));
+        addToEstimateButton.click();
+
+        return new Estimate(driver, this);
     }
 
 }
