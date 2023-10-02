@@ -11,8 +11,10 @@ import pastebintest.util.StringUtils;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static pastebintest.util.StringUtils.*;
 
 public class StartPageTest {
+
     public final StringUtils stringUtils = new StringUtils();
     protected WebDriver driver;
     private StartPage startPage;
@@ -27,11 +29,11 @@ public class StartPageTest {
                 .openPage()
                 .clickAgreeButton()
                 .closePopups()
-                .writeCodeInInputField()
+                .writeCodeInInputField(CODE)
                 .toggleSyntaxSwitch()
-                .selectSyntax()
+                .selectSyntax(SYNTAX)
                 .selectExpiry()
-                .enterPasteName()
+                .enterPasteName(TITLE)
                 .submitPaste();
 
         resultPage = startPage
@@ -46,19 +48,19 @@ public class StartPageTest {
     @Test
     public void pasteCreatedWithGivenTitle() {
         String name = resultPage.getTitle();
-        assertThat(name, equalTo(StringUtils.TITLE));
+        assertThat(name, equalTo(TITLE));
     }
 
     @Test
     public void pasteCreatedWithGivenSyntax() {
         String syntax = resultPage.getSyntax();
-        assertThat(syntax, equalTo(StringUtils.SYNTAX));
+        assertThat(syntax, equalTo(SYNTAX));
     }
 
     @Test
     public void pasteCreatedWithGivenCode() {
         String code = resultPage.getCode();
-        assertThat(code, equalTo(StringUtils.CODE));
+        assertThat(code, equalTo(CODE));
     }
 
 }
