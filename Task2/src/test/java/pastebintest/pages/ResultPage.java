@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 public class ResultPage {
     private final WebDriver driver;
 
-
     @FindBy(xpath = "//h1")
     private WebElement title;
 
@@ -32,7 +31,6 @@ public class ResultPage {
     }
 
     public String getSyntax() {
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return syntax.getText();
     }
 
