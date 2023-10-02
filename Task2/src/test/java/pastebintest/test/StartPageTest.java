@@ -15,8 +15,8 @@ import static pastebintest.util.StringUtils.*;
 
 public class StartPageTest {
 
-    public final StringUtils stringUtils = new StringUtils();
-    protected WebDriver driver;
+    private final StringUtils stringUtils = new StringUtils();
+    private WebDriver driver;
     private StartPage startPage;
     private ResultPage resultPage;
 
