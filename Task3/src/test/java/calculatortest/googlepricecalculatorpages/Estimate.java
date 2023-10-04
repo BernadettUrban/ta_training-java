@@ -1,6 +1,7 @@
 package calculatortest.googlepricecalculatorpages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,7 @@ import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class Estimate extends AbstractPage{
     private final CalculatorPage calculator;
+    private JavascriptExecutor js;
     @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/div[1]")
             //css = "div.cpc-cart-total > h2.md-title > b.ng-binding")
     ////*[@id="resultBlock"]/md-card/md-card-content/div/div/div/div[1]
@@ -17,6 +19,7 @@ public class Estimate extends AbstractPage{
 
     @FindBy(css = "button.md-button.md-mini[title='Email Estimate']")
     private WebElement emailEstimateButton;
+
 
     protected Estimate(WebDriver driver, CalculatorPage calculator) {
         super(driver);
@@ -33,7 +36,17 @@ public class Estimate extends AbstractPage{
         return totalEstimatedCost.getText();
     }
 
+    public Estimate clickSendEstimateButton(){
+        emailEstimateButton.click();
+        return this;
+    }
+
+
+
     public Estimate sendEstimateInEmail(String email){
+        js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
+        emailEstimateButton.click();
         WebElement emailField = driver.findElement(By.xpath("//*[@id='input_615']"));
         emailField.click();
         emailField.sendKeys(email);
