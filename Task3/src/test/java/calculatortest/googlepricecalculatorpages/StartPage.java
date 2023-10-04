@@ -1,5 +1,6 @@
 package calculatortest.googlepricecalculatorpages;
 
+import calculatortest.util.StringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,8 @@ public class StartPage extends AbstractPage{
     public static final String BASE_URL = "https://cloud.google.com/";
     public static final String QUERY = "Google Cloud Platform Pricing Calculator";
 
+    private StringUtils stringUtils = new StringUtils();
+
     @FindBy(name = "q")
     WebElement searchBar;
 
@@ -21,25 +24,15 @@ public class StartPage extends AbstractPage{
 
     @Override
     public StartPage openPage() {
-        driver.navigate().to(BASE_URL);
+        driver.navigate().to(stringUtils.BASE_URL_FOR_GOOGLE);
         return this;
     }
 
-    public StartPage performSearch(){
+    public SearchResultPage performSearch(String term){
         searchBar.click();
-        searchBar.sendKeys(QUERY);
+        searchBar.sendKeys(term);
         searchBar.sendKeys(Keys.ENTER);
-        return this;
-    }
-
-    public String getUrl(){
-        String url = driver.getCurrentUrl();
-        return url;
-    }
-
-    public SearchResult goToSearchResult(){
-        SearchResult searchResult = new SearchResult(driver);
-        return searchResult;
+        return new SearchResultPage(driver);
     }
 
 

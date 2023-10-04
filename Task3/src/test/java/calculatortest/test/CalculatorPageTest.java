@@ -4,6 +4,8 @@ import calculatortest.driver.DriverSingleton;
 import calculatortest.emailpages.EmailGeneratorPage;
 import calculatortest.googlepricecalculatorpages.CalculatorPage;
 import calculatortest.googlepricecalculatorpages.Estimate;
+import calculatortest.googlepricecalculatorpages.SearchResultPage;
+import calculatortest.googlepricecalculatorpages.StartPage;
 import calculatortest.util.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
@@ -21,6 +23,9 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class CalculatorPageTest {
     protected WebDriver driver;
+
+    StartPage startPage;
+    SearchResultPage resultPage;
     private CalculatorPage calculatorPage;
     Estimate estimate;
     EmailGeneratorPage emailGeneratorPage;
@@ -29,9 +34,11 @@ public class CalculatorPageTest {
     @BeforeTest()
     public void setUp() {
         driver = DriverSingleton.getDriver();
+        startPage = new StartPage(driver);
+        startPage.openPage();
+        resultPage = startPage.performSearch(stringUtils.SEARCH_TERM);
+        calculatorPage = resultPage.navigateToCalculator();
 
-        calculatorPage = new CalculatorPage(driver);
-        calculatorPage.openPage();
         calculatorPage.clickOkButton();
         estimate =  calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);

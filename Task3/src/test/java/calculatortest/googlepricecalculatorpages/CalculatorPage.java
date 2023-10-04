@@ -39,8 +39,8 @@ public class CalculatorPage extends AbstractPage {
 
     @Override
     public CalculatorPage openPage() {
-        driver.navigate().to(BASE_URL);
-        driver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+       // driver.navigate().to(BASE_URL);
+       // driver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         return this;
     }
 
@@ -52,6 +52,7 @@ public class CalculatorPage extends AbstractPage {
     }
 
     public CalculatorPage switchToMyFrame() {
+        driver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         final List<WebElement> iframes = driver.findElements(By.cssSelector("iframe"));
         String name = iframes.get(0).getAttribute("name");
         driver.switchTo().frame(name);

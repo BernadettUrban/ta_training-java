@@ -6,6 +6,8 @@ import calculatortest.emailpages.EstimateMailPage;
 import calculatortest.emailpages.InboxPage;
 import calculatortest.googlepricecalculatorpages.CalculatorPage;
 import calculatortest.googlepricecalculatorpages.Estimate;
+import calculatortest.googlepricecalculatorpages.SearchResultPage;
+import calculatortest.googlepricecalculatorpages.StartPage;
 import calculatortest.util.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
@@ -23,6 +25,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class InboxPageTest {
     protected WebDriver driver;
+    StartPage startPage;
+    SearchResultPage resultPage;
     private CalculatorPage calculatorPage;
     Estimate estimate;
     EmailGeneratorPage emailGeneratorPage;
@@ -35,11 +39,17 @@ public class InboxPageTest {
     public void setUp() throws IOException, UnsupportedFlavorException {
         driver = DriverSingleton.getDriver();
 
-        calculatorPage = new CalculatorPage(driver);
-        calculatorPage.openPage();
+        driver = DriverSingleton.getDriver();
+        startPage = new StartPage(driver);
+        startPage.openPage();
+        resultPage = startPage.performSearch(stringUtils.SEARCH_TERM);
+        calculatorPage = resultPage.navigateToCalculator();
+
         calculatorPage.clickOkButton();
         estimate =  calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);
+
+
         emailGeneratorPage = new EmailGeneratorPage(driver);
         String originalWindow = driver.getWindowHandle();
         WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
