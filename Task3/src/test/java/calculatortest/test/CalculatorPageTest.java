@@ -36,10 +36,11 @@ public class CalculatorPageTest {
         driver = DriverSingleton.getDriver();
         startPage = new StartPage(driver);
         startPage.openPage();
+        startPage.clickOkButton();
         resultPage = startPage.performSearch(stringUtils.SEARCH_TERM);
         calculatorPage = resultPage.navigateToCalculator();
 
-        calculatorPage.clickOkButton();
+        //calculatorPage.clickOkButton();
         estimate =  calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);
 

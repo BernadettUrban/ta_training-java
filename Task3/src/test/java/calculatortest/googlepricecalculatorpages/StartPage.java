@@ -1,11 +1,14 @@
 package calculatortest.googlepricecalculatorpages;
 
 import calculatortest.util.StringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.time.Duration;
 
 public class StartPage extends AbstractPage{
 
@@ -25,6 +28,16 @@ public class StartPage extends AbstractPage{
     @Override
     public StartPage openPage() {
         driver.navigate().to(stringUtils.BASE_URL_FOR_GOOGLE);
+        return this;
+    }
+
+    public StartPage clickOkButton() {
+        WebElement okButton = driver.findElement(By.xpath("//*[@id='yDmH0d']/div[3]/div/div/button"));
+
+              //  "/html/body/devsite-snackbar/div/div/button"));
+
+        waitForClickablility(okButton, Duration.ofSeconds(10L));
+        okButton.click();
         return this;
     }
 

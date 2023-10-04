@@ -46,6 +46,7 @@ public class CalculatorPage extends AbstractPage {
 
     public CalculatorPage clickOkButton() {
         WebElement okButton = driver.findElement(By.xpath("/html/body/devsite-snackbar/div/div/button"));
+
         waitForClickablility(okButton, Duration.ofSeconds(10L));
         okButton.click();
         return this;

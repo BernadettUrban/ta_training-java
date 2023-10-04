@@ -23,10 +23,10 @@ public class StartPageTest {
 
         startPage = new StartPage(driver);
         startPage.openPage();
-
+        startPage.clickOkButton();
     }
 
-    @AfterMethod(alwaysRun = true)
+    //@AfterMethod(alwaysRun = true)
     public void stopBrowser() {
         DriverSingleton.closeDriver();
     }

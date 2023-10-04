@@ -2,7 +2,11 @@ package calculatortest.googlepricecalculatorpages;
 
 import calculatortest.util.StringUtils;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractPage
@@ -17,5 +21,9 @@ public abstract class AbstractPage
     {
         this.driver = driver;
 
+    }
+    public WebElement waitForClickablility(WebElement element, Duration timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }

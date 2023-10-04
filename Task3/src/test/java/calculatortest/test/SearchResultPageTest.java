@@ -22,6 +22,7 @@ public class SearchResultPageTest {
 
         startPage = new StartPage(driver);
         startPage.openPage();
+        startPage.clickOkButton();
         searchResult = startPage.performSearch(stringUtils.SEARCH_TERM);
 
     }
