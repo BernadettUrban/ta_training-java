@@ -4,6 +4,7 @@ import calculatortest.driver.DriverSingleton;
 import calculatortest.emailpages.EmailGeneratorPage;
 import calculatortest.emailpages.EstimateMailPage;
 import calculatortest.emailpages.InboxPage;
+import calculatortest.emailpages.MainEmailPage;
 import calculatortest.googlepricecalculatorpages.CalculatorPage;
 import calculatortest.googlepricecalculatorpages.Estimate;
 import calculatortest.googlepricecalculatorpages.SearchResultPage;
@@ -29,6 +30,8 @@ public class InboxPageTest {
     SearchResultPage resultPage;
     private CalculatorPage calculatorPage;
     Estimate estimate;
+
+    MainEmailPage mainEmailPage;
     EmailGeneratorPage emailGeneratorPage;
     InboxPage inboxPage;
     StringUtils stringUtils = new StringUtils();
@@ -48,15 +51,16 @@ public class InboxPageTest {
         calculatorPage.clickOkButton();
         estimate =  calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);
-
-
-        emailGeneratorPage = new EmailGeneratorPage(driver);
         String originalWindow = driver.getWindowHandle();
         WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
-        newTab.get(stringUtils.BASE_URL_FOR_EMAIL_GENERATOR);
+        newTab.get(stringUtils.BASE_URL_FOR_EMAIL);
         tabForEmailGenerator = newTab.getWindowHandle();
+        mainEmailPage = new MainEmailPage(driver);
+        emailGeneratorPage = mainEmailPage.clickGenerateEmail();
+                //new EmailGeneratorPage(driver);
 
-        emailGeneratorPage.clickAgreeButton();
+
+       // emailGeneratorPage.clickAgreeButton();
         emailGeneratorPage.copyEmailToClipBoard();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();

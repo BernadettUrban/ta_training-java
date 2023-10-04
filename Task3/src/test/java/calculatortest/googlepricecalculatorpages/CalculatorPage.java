@@ -71,7 +71,7 @@ public class CalculatorPage extends AbstractPage {
         quantity.sendKeys(numberOfInstances);
         series.click();
         WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
-        waitForClickablility(seriesOption, Duration.ofSeconds(10L));
+        waitForClickablility(seriesOption, Duration.ofSeconds(20L));
         seriesOption.click();
 
         machineType.click();
