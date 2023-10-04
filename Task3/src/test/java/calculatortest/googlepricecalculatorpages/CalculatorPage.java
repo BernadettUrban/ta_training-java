@@ -46,7 +46,7 @@ public class CalculatorPage extends AbstractPage {
 
     public CalculatorPage clickOkButton() {
         WebElement okButton = driver.findElement(By.xpath("/html/body/devsite-snackbar/div/div/button"));
-        waitForClickablility(okButton, Duration.ofSeconds(5));
+        waitForClickablility(okButton, Duration.ofSeconds(10L));
         okButton.click();
         return this;
     }
@@ -70,13 +70,14 @@ public class CalculatorPage extends AbstractPage {
         quantity.sendKeys(numberOfInstances);
         series.click();
         WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
-        waitForClickablility(seriesOption, Duration.ofSeconds(10L));
+        //waitForClickablility(seriesOption, Duration.ofSeconds(10L));
 
         seriesOption.click();
         machineType.click();
         WebElement machine = driver.findElement(By.xpath(
                 "//*[@id='select_container_126']/md-select-menu/md-content/md-optgroup[3]/md-option[4]"));
-            machine.click();
+         waitForClickablility(machine, Duration.ofSeconds(10L));
+         machine.click();
 
         addGPUs.click();
         WebElement GPUTypeDropdown = driver.findElement(By.cssSelector("#select_505"));

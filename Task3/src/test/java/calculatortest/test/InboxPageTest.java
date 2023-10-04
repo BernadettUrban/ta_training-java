@@ -2,6 +2,7 @@ package calculatortest.test;
 
 import calculatortest.driver.DriverSingleton;
 import calculatortest.emailpages.EmailGeneratorPage;
+import calculatortest.emailpages.EstimateMailPage;
 import calculatortest.emailpages.InboxPage;
 import calculatortest.googlepricecalculatorpages.CalculatorPage;
 import calculatortest.googlepricecalculatorpages.Estimate;
@@ -28,6 +29,7 @@ public class InboxPageTest {
     InboxPage inboxPage;
     StringUtils stringUtils = new StringUtils();
     String tabForEmailGenerator;
+    EstimateMailPage estimateMailPage;
 
     @BeforeTest()
     public void setUp() throws IOException, UnsupportedFlavorException {
@@ -53,6 +55,11 @@ public class InboxPageTest {
         driver.switchTo().window(originalWindow);
         calculatorPage.switchToMyFrame();
         estimate.sendEstimateInEmail(email);
+        driver.switchTo().window(tabForEmailGenerator);
+
+        emailGeneratorPage.checkInbox();
+        inboxPage = new InboxPage(driver);
+        inboxPage.waitForNewEmail();
 
     }
 
@@ -64,15 +71,21 @@ public class InboxPageTest {
     @Test
     public void estimateEmailArrivedTest() throws IOException, UnsupportedFlavorException {
 
-        driver.switchTo().window(tabForEmailGenerator);
 
-        emailGeneratorPage.checkInbox();
-        inboxPage = new InboxPage(driver);
-        inboxPage.waitForNewEmail();
 
         String mailcount = inboxPage.mailCount();
         boolean startsWithZero = mailcount.startsWith("0");
         assertThat(Boolean.valueOf(mailcount.startsWith("0")), equalTo(false));
 
+    }
+
+    @Test
+    public void estimateFromEmailIsCorrect(){
+
+        estimateMailPage = inboxPage.getEstimateEmail();
+                //new EstimateMailPage(driver);
+        String emailContetnt = estimateMailPage.getEstimateFromEmail();
+        String expectedMonthylyCost = "1,081.20";
+        assertThat(Boolean.valueOf(emailContetnt.contains(expectedMonthylyCost)), equalTo(true));
     }
 }
