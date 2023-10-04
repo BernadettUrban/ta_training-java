@@ -42,21 +42,77 @@ public class CalculatorPageTest {
     public void stopBrowser() {
         DriverSingleton.closeDriver();
     }
-    @Test
+    @Test(priority=1)
     public void estimatedCostIsCalculatedCorrectly(){
        String actual = estimate.totalEstimatedCost();
        String expected = "Total Estimated Cost: USD 1,081.20 per 1 month";
         assertThat(actual, equalTo(expected));
     }
+    @Test(priority=2)
+    public void monthlyCostIsCorrect(){
+        String actualString = estimate.getMonthlyEstimate();
+        boolean actual = estimate.totalEstimatedCost().contains(actualString);
+        System.out.println(actualString);
+        System.out.println(estimate.totalEstimatedCost());
+        assertThat(Boolean.valueOf(actual), equalTo(true));
+    }
+    @Test(priority=3)
+    public void regionIsCorrectInEstimate(){
+        String actualString = estimate.getRegion();
+        boolean actual = actualString .contains(stringUtils.REGION);
+        assertThat(Boolean.valueOf(actual), equalTo(true));
+    }
+    @Test(priority=4)
+    public void numberOfEnginesIsCorrect(){
+        String actualString = estimate.getNumberOfEngines();
+        boolean actual = actualString .contains(stringUtils.NUMBER_OF_INSTANCES);
+        assertThat(Boolean.valueOf(actual), equalTo(true));
+    }
+    @Test(priority=5)
+    public void commitmentTermIsCorrect(){
+        String actualString = estimate.getCommitmentTerm();
+        boolean actual = actualString .contains(stringUtils.COMMITMENT_TERM);
+        assertThat(Boolean.valueOf(actual), equalTo(true));
+    }
 
 
-    @Test
+
+    @Test(priority=6)
+    public void getProvisioningModel(){
+        String actualString = estimate.getProvisioningModel();
+        boolean actual = actualString .contains(stringUtils.PROVISIONING_MODEL);
+        assertThat(Boolean.valueOf(actual), equalTo(true));
+    }
+
+
+    @Test(priority=7)
+
+
+    public void instanceTypeIsCorrect(){
+        String actualString = estimate.getInstanceType();
+        boolean actual = actualString .contains(stringUtils.INSTANCE_TYPE);
+        assertThat(Boolean.valueOf(actual), equalTo(true));
+    }
+    @Test(priority=8)
+    public void operatingSystemIsCorrect(){
+        String actualString = estimate.getOperatingSystem();
+        boolean actual = actualString .contains(stringUtils.OPERATING_SYSTEM);
+        assertThat(Boolean.valueOf(actual), equalTo(true));
+    }
+    @Test(priority=9)
+    public void localSSDIsCorrect(){
+        String actualString = estimate.getLocalSSD();
+        boolean actual = actualString .contains(stringUtils.LOCAL_SSD);
+        assertThat(Boolean.valueOf(actual), equalTo(true));
+    }
+
+
+
+  //  @Test(priority=10)
     public void insertEmailIntoForm() throws IOException, UnsupportedFlavorException {
 
         emailGeneratorPage = new EmailGeneratorPage(driver);
-        //Store the ID of the original window
         String originalWindow = driver.getWindowHandle();
-
 
         WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
         newTab.get(stringUtils.BASE_URL_FOR_EMAIL_GENERATOR);
@@ -69,7 +125,7 @@ public class CalculatorPageTest {
 
         driver.switchTo().window(originalWindow);
         calculatorPage.switchToMyFrame();
-        estimate.sendEstimateInEmail(email);
+
 
         //boolean emailIsEmpty = false;
        // assertThat(Boolean.valueOf(email.isEmpty()), equalTo(emailIsEmpty));

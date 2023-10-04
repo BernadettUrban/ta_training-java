@@ -12,9 +12,30 @@ import static org.openqa.selenium.support.PageFactory.initElements;
 public class Estimate extends AbstractPage{
     private final CalculatorPage calculator;
     private JavascriptExecutor js;
+    @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-toolbar/div/h2[2]")
+    WebElement monthlyEstimate;
+
+    @FindBy(xpath = "//*[@id='compute']/md-list/div/div[1]/div/div/span")
+    WebElement numberOfEngines;
+    @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[1]/div[1]")
+    WebElement region;
+
+    @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[3]/div[1]")
+    WebElement commitmentTerm;
+
+    @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[4]/div[1]")
+    WebElement provisioningModel;
+
+    @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[5]/div[1]")
+    WebElement instanceType;
+
+    @FindBy(xpath =
+    "//*[@id='compute']/md-list/md-list-item[6]/div[1]")
+    WebElement operatingSystem;
+
+    @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[7]/div[1]")
+    WebElement localSSD;
     @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/div[1]")
-            //css = "div.cpc-cart-total > h2.md-title > b.ng-binding")
-    ////*[@id="resultBlock"]/md-card/md-card-content/div/div/div/div[1]
     private WebElement totalEstimatedCost;
 
     @FindBy(css = "button.md-button.md-mini[title='Email Estimate']")
@@ -34,6 +55,38 @@ public class Estimate extends AbstractPage{
 
     public String totalEstimatedCost() {
         return totalEstimatedCost.getText();
+    }
+
+    public String getMonthlyEstimate(){
+        return monthlyEstimate.getText();
+    }
+
+    public String getNumberOfEngines(){
+        return numberOfEngines.getText();
+    }
+
+    public String getRegion(){
+        return  region.getText();
+    }
+
+    public String getCommitmentTerm(){
+        return commitmentTerm.getText();
+    }
+
+    public String getProvisioningModel(){
+        return provisioningModel.getText();
+    }
+    public String getInstanceType(){
+        return instanceType.getText();
+    }
+
+
+    public String getOperatingSystem(){
+        return  operatingSystem.getText();
+    }
+
+    public String getLocalSSD(){
+        return localSSD.getText();
     }
 
     public Estimate clickSendEstimateButton(){
