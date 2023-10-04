@@ -51,7 +51,7 @@ public class CalculatorPage extends AbstractPage {
         return this;
     }
 
-    public CalculatorPage getIframe() {
+    public CalculatorPage switchToMyFrame() {
         final List<WebElement> iframes = driver.findElements(By.cssSelector("iframe"));
         String name = iframes.get(0).getAttribute("name");
         driver.switchTo().frame(name);
@@ -74,8 +74,9 @@ public class CalculatorPage extends AbstractPage {
 
         seriesOption.click();
         machineType.click();
-        WebElement machine = driver.findElement(By.id("select_option_469"));
-        machine.click();
+        WebElement machine = driver.findElement(By.xpath(
+                "//*[@id='select_container_126']/md-select-menu/md-content/md-optgroup[3]/md-option[4]"));
+            machine.click();
 
         addGPUs.click();
         WebElement GPUTypeDropdown = driver.findElement(By.cssSelector("#select_505"));
