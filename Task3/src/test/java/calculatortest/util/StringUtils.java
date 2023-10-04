@@ -1,5 +1,8 @@
 package calculatortest.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringUtils {
     public final String BASE_URL_FOR_GOOGLE = "https://cloud.google.com/";
     public final String SEARCH_TERM = "Google Cloud Platform Pricing Calculator";
@@ -15,5 +18,16 @@ public class StringUtils {
 
     public final String OPERATING_SYSTEM = "Free";
     public final String LOCAL_SSD = "2x375 GiB";
+
+    public String regexForUSD(String toValidate){
+        StringBuilder sb = new StringBuilder();
+        Pattern pattern = Pattern.compile("([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?");
+
+        Matcher matcher = pattern.matcher(toValidate);
+        if (matcher.find()) {
+            sb.append(matcher.group(0));
+        }
+        return sb.toString();
+    }
 
 }

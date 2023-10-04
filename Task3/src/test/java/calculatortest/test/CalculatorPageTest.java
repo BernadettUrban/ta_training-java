@@ -46,15 +46,14 @@ public class CalculatorPageTest {
     public void estimatedCostIsCalculatedCorrectly(){
        String actual = estimate.totalEstimatedCost();
        String expected = "Total Estimated Cost: USD 1,081.20 per 1 month";
-        assertThat(actual, equalTo(expected));
+       assertThat(actual, equalTo(expected));
     }
     @Test(priority=2)
     public void monthlyCostIsCorrect(){
         String actualString = estimate.getMonthlyEstimate();
-        boolean actual = estimate.totalEstimatedCost().contains(actualString);
-        System.out.println(actualString);
-        System.out.println(estimate.totalEstimatedCost());
-        assertThat(Boolean.valueOf(actual), equalTo(true));
+        String actual = stringUtils.regexForUSD(actualString);
+        String expected = stringUtils.regexForUSD(estimate.totalEstimatedCost());
+        assertThat(actual, equalTo(expected));
     }
     @Test(priority=3)
     public void regionIsCorrectInEstimate(){
@@ -86,8 +85,6 @@ public class CalculatorPageTest {
 
 
     @Test(priority=7)
-
-
     public void instanceTypeIsCorrect(){
         String actualString = estimate.getInstanceType();
         boolean actual = actualString .contains(stringUtils.INSTANCE_TYPE);
