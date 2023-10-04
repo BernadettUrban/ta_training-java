@@ -8,7 +8,6 @@ import calculatortest.googlepricecalculatorpages.Estimate;
 import calculatortest.util.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -28,16 +27,32 @@ public class InboxPageTest {
     EmailGeneratorPage emailGeneratorPage;
     InboxPage inboxPage;
     StringUtils stringUtils = new StringUtils();
+    String tabForEmailGenerator;
 
     @BeforeTest()
-    public void setUp() {
+    public void setUp() throws IOException, UnsupportedFlavorException {
         driver = DriverSingleton.getDriver();
 
         calculatorPage = new CalculatorPage(driver);
         calculatorPage.openPage();
         calculatorPage.clickOkButton();
-        estimate =  calculatorPage.getIframe()
+        estimate =  calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);
+        emailGeneratorPage = new EmailGeneratorPage(driver);
+        String originalWindow = driver.getWindowHandle();
+        WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
+        newTab.get(stringUtils.BASE_URL_FOR_EMAIL_GENERATOR);
+        tabForEmailGenerator = newTab.getWindowHandle();
+
+        emailGeneratorPage.clickAgreeButton();
+        emailGeneratorPage.copyEmailToClipBoard();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+        String email = (String) clipboard.getData(DataFlavor.stringFlavor);
+
+        driver.switchTo().window(originalWindow);
+        calculatorPage.switchToMyFrame();
+        estimate.sendEstimateInEmail(email);
 
     }
 
@@ -47,23 +62,7 @@ public class InboxPageTest {
     }
 
     @Test
-    public void estimeteEmailArrived() throws IOException, UnsupportedFlavorException {
-
-        emailGeneratorPage = new EmailGeneratorPage(driver);
-        String originalWindow = driver.getWindowHandle();
-        WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
-        newTab.get(stringUtils.BASE_URL_FOR_EMAIL_GENERATOR);
-        String tabForEmailGenerator = newTab.getWindowHandle();
-
-        emailGeneratorPage.clickAgreeButton();
-        emailGeneratorPage.copyEmailToClipBoard();
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Clipboard clipboard = toolkit.getSystemClipboard();
-        String email = (String) clipboard.getData(DataFlavor.stringFlavor);
-
-        driver.switchTo().window(originalWindow);
-        calculatorPage.getIframe();
-        estimate.sendEstimateInEmail(email);
+    public void estimateEmailArrivedTest() throws IOException, UnsupportedFlavorException {
 
         driver.switchTo().window(tabForEmailGenerator);
 

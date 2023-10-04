@@ -4,10 +4,7 @@ import calculatortest.driver.DriverSingleton;
 import calculatortest.emailpages.EmailGeneratorPage;
 import calculatortest.googlepricecalculatorpages.CalculatorPage;
 import calculatortest.googlepricecalculatorpages.Estimate;
-import calculatortest.googlepricecalculatorpages.StartPage;
 import calculatortest.util.StringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.testng.annotations.BeforeTest;
@@ -18,7 +15,6 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -37,7 +33,7 @@ public class CalculatorPageTest {
         calculatorPage = new CalculatorPage(driver);
         calculatorPage.openPage();
         calculatorPage.clickOkButton();
-        estimate =  calculatorPage.getIframe()
+        estimate =  calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);
 
     }
@@ -50,7 +46,7 @@ public class CalculatorPageTest {
     public void estimatedCostIsCalculatedCorrectly(){
        String actual = estimate.totalEstimatedCost();
        String expected = "Total Estimated Cost: USD 1,081.20 per 1 month";
-      //  assertThat(actual, equalTo(expected));
+        assertThat(actual, equalTo(expected));
     }
 
 
@@ -72,7 +68,7 @@ public class CalculatorPageTest {
         String email = (String) clipboard.getData(DataFlavor.stringFlavor);
 
         driver.switchTo().window(originalWindow);
-        calculatorPage.getIframe();
+        calculatorPage.switchToMyFrame();
         estimate.sendEstimateInEmail(email);
 
         //boolean emailIsEmpty = false;
