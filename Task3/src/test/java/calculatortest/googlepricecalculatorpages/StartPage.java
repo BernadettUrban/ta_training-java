@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
 
@@ -33,10 +34,9 @@ public class StartPage extends AbstractPage{
 
     public StartPage clickOkButton() {
         WebElement okButton = driver.findElement(By.xpath("//*[@id='yDmH0d']/div[3]/div/div/button"));
-
-              //  "/html/body/devsite-snackbar/div/div/button"));
-
-        waitForClickablility(okButton, Duration.ofSeconds(10L));
+        FluentWait wait = new FluentWait(driver);
+        wait.withTimeout(Duration.ofSeconds(5000L));
+        wait.pollingEvery(Duration.ofMillis(100L));
         okButton.click();
         return this;
     }

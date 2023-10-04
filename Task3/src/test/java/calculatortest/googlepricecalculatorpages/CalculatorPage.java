@@ -47,7 +47,7 @@ public class CalculatorPage extends AbstractPage {
     public CalculatorPage clickOkButton() {
         WebElement okButton = driver.findElement(By.xpath("/html/body/devsite-snackbar/div/div/button"));
 
-        waitForClickablility(okButton, Duration.ofSeconds(10L));
+        waitForClickability(okButton, Duration.ofSeconds(10L));
         okButton.click();
         return this;
     }
@@ -63,27 +63,27 @@ public class CalculatorPage extends AbstractPage {
 
     }
 
-    public WebElement waitForClickablility(WebElement element, Duration timeout) {
+   /* public WebElement waitForClickability(WebElement element, Duration timeout) {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
-
+*/
     public Estimate addSpecifications(String numberOfInstances) {
         quantity.sendKeys(numberOfInstances);
         series.click();
         WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
-        waitForClickablility(seriesOption, Duration.ofSeconds(20L));
+        waitForClickability(seriesOption, Duration.ofSeconds(20L));
         seriesOption.click();
 
         machineType.click();
         WebElement machine = driver.findElement(By.xpath(
                 "//*[@id='select_container_126']/md-select-menu/md-content/md-optgroup[3]/md-option[4]"));
-         waitForClickablility(machine, Duration.ofSeconds(10L));
+         waitForClickability(machine, Duration.ofSeconds(10L));
          machine.click();
 
         addGPUs.click();
         WebElement GPUTypeDropdown = driver.findElement(By.cssSelector("#select_505"));
-        waitForClickablility(GPUTypeDropdown, Duration.ofSeconds(10L));
+        waitForClickability(GPUTypeDropdown, Duration.ofSeconds(10L));
         GPUTypeDropdown.click();
 
         WebElement tesla = driver.findElement(By.cssSelector("#select_option_512 > div"));
@@ -93,33 +93,32 @@ public class CalculatorPage extends AbstractPage {
         numberOfGPUsDropdown.click();
 
         WebElement valueOfGPUs = driver.findElement(By.cssSelector("#select_option_515"));
-        waitForClickablility(valueOfGPUs, Duration.ofSeconds(10));
+        waitForClickability(valueOfGPUs, Duration.ofSeconds(10));
         valueOfGPUs.click();
 
 
         WebElement localSSD = driver.findElement(By.cssSelector("#select_value_label_463"));
 
-        waitForClickablility(localSSD, Duration.ofSeconds(10L));
+        waitForClickability(localSSD, Duration.ofSeconds(10L));
         localSSD.click();
 
         WebElement SSDoption = driver.findElement(By.cssSelector("#select_option_490"));
 
-        waitForClickablility(SSDoption, Duration.ofSeconds(10L));
+        waitForClickability(SSDoption, Duration.ofSeconds(10L));
         SSDoption.click();
 
         WebElement datacenterLocation = driver.findElement(By.xpath("//*[@id='select_131']"));
         datacenterLocation.click();
 
         WebElement datacenterOption = driver.findElement(By.xpath("//*[@id='select_option_263']"));
-
-        waitForClickablility(datacenterOption, Duration.ofSeconds(10L));
+        waitForClickability(datacenterOption, Duration.ofSeconds(10L));
         datacenterOption.click();
         WebElement committedUsage = driver.findElement(By.xpath("//*[@id='select_138']"));
         committedUsage.click();
 
         WebElement usageOption = driver.findElement(By.cssSelector("#select_option_136"));
 
-        waitForClickablility(usageOption, Duration.ofSeconds(10L));
+        waitForClickability(usageOption, Duration.ofSeconds(10L));
         usageOption.click();
 
         WebElement addToEstimateButton = driver.findElement(By.xpath("//*[@id='mainForm']/div[2]/div/md-card/md-card-content/div/div[1]/form/div[20]/button"));
