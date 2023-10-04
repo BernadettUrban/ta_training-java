@@ -32,8 +32,6 @@ public class CalculatorPage extends AbstractPage {
     @FindBy(css = "#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div:nth-child(15) > div.layout-column.flex-gt-sm-90.flex-80 > md-input-container > md-checkbox")
     WebElement addGPUs;
 
-
-    //#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div:nth-child(15) > div.layout-column.flex-gt-sm-90.flex-80 > md-input-container > md-checkbox
     public CalculatorPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -73,8 +71,7 @@ public class CalculatorPage extends AbstractPage {
         series.click();
         WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
         waitForClickablility(seriesOption, Duration.ofSeconds(10L));
-        //waitForClickablility(seriesOption, Duration.ofSeconds(10));
-        //new Actions(driver).moveToElement(seriesOption).click().perform();
+
         seriesOption.click();
         machineType.click();
         WebElement machine = driver.findElement(By.id("select_option_469"));
