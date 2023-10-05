@@ -86,4 +86,11 @@ public class CalculatorPageTest extends CommonTestConditions {
         assertThat(Boolean.valueOf(actual), equalTo(true));
     }
 
+    @Test(priority = 11)
+    public void currencyIsCorrect() {
+        String actualString = estimate.totalEstimatedCost();
+        String expected = "USD";
+        assertThat(Boolean.valueOf(actualString.contains(expected)), equalTo(true));
+    }
+
 }

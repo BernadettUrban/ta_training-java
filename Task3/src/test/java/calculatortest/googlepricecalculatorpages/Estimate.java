@@ -37,6 +37,10 @@ public class Estimate extends AbstractPage {
     @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/div[1]")
     private WebElement totalEstimatedCost;
 
+    @FindBy(xpath = "//*[@id='select_462']")
+    private WebElement currencyDropdown;
+
+
     @FindBy(css = "button.md-button.md-mini[title='Email Estimate']")
     private WebElement emailEstimateButton;
 
