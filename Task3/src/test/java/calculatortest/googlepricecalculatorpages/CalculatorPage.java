@@ -16,21 +16,21 @@ public class CalculatorPage extends AbstractPage {
 
     public static final String BASE_URL = "https://cloud.google.com/products/calculator";
     @FindBy(xpath = "//*[@id='tab-item-1']/div")
-    WebElement computeEngine;
+    private WebElement computeEngine;
     @FindBy(name = "quantity")
-    WebElement quantity;
+    private WebElement quantity;
     @FindBy(id = "select_value_label_90")
-    WebElement opSystem;
+    private WebElement opSystem;
     @FindBy(id = "select_value_label_91")
-    WebElement provisioningModel;
+    private WebElement provisioningModel;
     @FindBy(id = "select_value_label_92")
-    WebElement machineFamily;
+    private WebElement machineFamily;
     @FindBy(id = "select_value_label_93")
-    WebElement series;
+    private WebElement series;
     @FindBy(id = "select_value_label_94")
-    WebElement machineType;
+    private WebElement machineType;
     @FindBy(css = "#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div:nth-child(15) > div.layout-column.flex-gt-sm-90.flex-80 > md-input-container > md-checkbox")
-    WebElement addGPUs;
+    private WebElement addGPUs;
 
     public CalculatorPage(WebDriver driver) {
         super(driver);
@@ -39,16 +39,6 @@ public class CalculatorPage extends AbstractPage {
 
     @Override
     public CalculatorPage openPage() {
-       // driver.navigate().to(BASE_URL);
-       // driver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-        return this;
-    }
-
-    public CalculatorPage clickOkButton() {
-        WebElement okButton = driver.findElement(By.xpath("/html/body/devsite-snackbar/div/div/button"));
-
-        waitForClickability(okButton, Duration.ofSeconds(10L));
-        okButton.click();
         return this;
     }
 
@@ -63,12 +53,8 @@ public class CalculatorPage extends AbstractPage {
 
     }
 
-   /* public WebElement waitForClickability(WebElement element, Duration timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-*/
     public Estimate addSpecifications(String numberOfInstances) {
+        computeEngine.click();
         quantity.sendKeys(numberOfInstances);
         series.click();
         WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
@@ -126,6 +112,5 @@ public class CalculatorPage extends AbstractPage {
 
         return new Estimate(driver, this);
     }
-
 
 }

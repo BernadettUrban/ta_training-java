@@ -12,29 +12,31 @@ import static org.openqa.selenium.support.PageFactory.initElements;
 public class Estimate extends AbstractPage{
     private final CalculatorPage calculator;
     private JavascriptExecutor js;
+    @FindBy(css = "#compute > md-toolbar > h2 > span:nth-child(1)")
+    private WebElement computeEngineSign;
     @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-toolbar/div/h2[2]")
-    WebElement monthlyEstimate;
+    private WebElement monthlyEstimate;
 
     @FindBy(xpath = "//*[@id='compute']/md-list/div/div[1]/div/div/span")
-    WebElement numberOfEngines;
+    private WebElement numberOfEngines;
     @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[1]/div[1]")
-    WebElement region;
+    private WebElement region;
 
     @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[3]/div[1]")
-    WebElement commitmentTerm;
+    private WebElement commitmentTerm;
 
     @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[4]/div[1]")
-    WebElement provisioningModel;
+    private WebElement provisioningModel;
 
     @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[5]/div[1]")
-    WebElement instanceType;
+    private WebElement instanceType;
 
     @FindBy(xpath =
     "//*[@id='compute']/md-list/md-list-item[6]/div[1]")
-    WebElement operatingSystem;
+    private WebElement operatingSystem;
 
     @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[7]/div[1]")
-    WebElement localSSD;
+    private WebElement localSSD;
     @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/div[1]")
     private WebElement totalEstimatedCost;
 
@@ -53,6 +55,9 @@ public class Estimate extends AbstractPage{
         return this;
     }
 
+    public String getComputeEngineSign(){
+        return  computeEngineSign.getText();
+    }
     public String totalEstimatedCost() {
         return totalEstimatedCost.getText();
     }

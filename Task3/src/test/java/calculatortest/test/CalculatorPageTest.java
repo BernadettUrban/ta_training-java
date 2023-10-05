@@ -51,11 +51,12 @@ public class CalculatorPageTest {
         DriverSingleton.closeDriver();
     }
     @Test(priority=1)
-    public void estimatedCostIsCalculatedCorrectly(){
-       String actual = estimate.totalEstimatedCost();
-       String expected = "Total Estimated Cost: USD 1,081.20 per 1 month";
+    public void computeEngineSelected(){
+       String  actual = estimate.getComputeEngineSign();
+       String expected = "Compute Engine";
        assertThat(actual, equalTo(expected));
     }
+
     @Test(priority=2)
     public void monthlyCostIsCorrect(){
         String actualString = estimate.getMonthlyEstimate();
@@ -64,18 +65,25 @@ public class CalculatorPageTest {
         assertThat(actual, equalTo(expected));
     }
     @Test(priority=3)
+    public void estimatedCostIsCalculatedCorrectly(){
+        String actual = estimate.totalEstimatedCost();
+        String expected = "Total Estimated Cost: USD 1,081.20 per 1 month";
+        assertThat(actual, equalTo(expected));
+    }
+
+    @Test(priority=4)
     public void regionIsCorrectInEstimate(){
         String actualString = estimate.getRegion();
         boolean actual = actualString .contains(stringUtils.REGION);
         assertThat(Boolean.valueOf(actual), equalTo(true));
     }
-    @Test(priority=4)
+    @Test(priority=5)
     public void numberOfEnginesIsCorrect(){
         String actualString = estimate.getNumberOfEngines();
         boolean actual = actualString .contains(stringUtils.NUMBER_OF_INSTANCES);
         assertThat(Boolean.valueOf(actual), equalTo(true));
     }
-    @Test(priority=5)
+    @Test(priority=6)
     public void commitmentTermIsCorrect(){
         String actualString = estimate.getCommitmentTerm();
         boolean actual = actualString .contains(stringUtils.COMMITMENT_TERM);
@@ -84,7 +92,7 @@ public class CalculatorPageTest {
 
 
 
-    @Test(priority=6)
+    @Test(priority=7)
     public void getProvisioningModel(){
         String actualString = estimate.getProvisioningModel();
         boolean actual = actualString .contains(stringUtils.PROVISIONING_MODEL);
@@ -92,19 +100,19 @@ public class CalculatorPageTest {
     }
 
 
-    @Test(priority=7)
+    @Test(priority=8)
     public void instanceTypeIsCorrect(){
         String actualString = estimate.getInstanceType();
         boolean actual = actualString .contains(stringUtils.INSTANCE_TYPE);
         assertThat(Boolean.valueOf(actual), equalTo(true));
     }
-    @Test(priority=8)
+    @Test(priority=9)
     public void operatingSystemIsCorrect(){
         String actualString = estimate.getOperatingSystem();
         boolean actual = actualString .contains(stringUtils.OPERATING_SYSTEM);
         assertThat(Boolean.valueOf(actual), equalTo(true));
     }
-    @Test(priority=9)
+    @Test(priority=10)
     public void localSSDIsCorrect(){
         String actualString = estimate.getLocalSSD();
         boolean actual = actualString .contains(stringUtils.LOCAL_SSD);
