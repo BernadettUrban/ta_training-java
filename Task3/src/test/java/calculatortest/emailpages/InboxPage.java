@@ -49,7 +49,7 @@ public class InboxPage extends AbstractPage {
         return !mailCount().startsWith("0");
     }
 
-    public EstimateMailPage getEstimateEmail() {
+    public EstimateMailPage getEmails() {
         driver.switchTo().frame(mailFraim);
         return new EstimateMailPage(driver);
     }

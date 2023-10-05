@@ -19,7 +19,7 @@ public class InboxPageTest extends CommonTestConditions {
 
 
     @Test
-    public void estimateEmailArrivedTest() throws IOException, UnsupportedFlavorException {
+    public void estimateEmailArrivedTest() {
 
         String mailCount = inboxPage.mailCount();
         assertThat(Boolean.valueOf(mailCount.startsWith("0")), equalTo(false));
@@ -29,7 +29,7 @@ public class InboxPageTest extends CommonTestConditions {
     @Test
     public void estimateFromEmailIsCorrect() {
 
-        estimateMailPage = inboxPage.getEstimateEmail();
+        estimateMailPage = inboxPage.getEmails();
         String emailContent = estimateMailPage.getEstimateFromEmail();
 
         String expected = "1,081.20";
