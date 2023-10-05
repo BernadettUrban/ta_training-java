@@ -21,7 +21,7 @@ public class EstimateMailPage extends AbstractPage {
         return null;
     }
 
-    public String getEstimateFromEmail(){
+    public String getEstimateFromEmail() {
 
         return monthlyCost.getText();
     }

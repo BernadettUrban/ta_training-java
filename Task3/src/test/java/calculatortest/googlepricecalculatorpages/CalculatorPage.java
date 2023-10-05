@@ -1,13 +1,11 @@
 package calculatortest.googlepricecalculatorpages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -16,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class CalculatorPage extends AbstractPage {
 
     public static final String BASE_URL = "https://cloud.google.com/products/calculator";
+    private final JavascriptExecutor js;
     @FindBy(xpath = "//*[@id='tab-item-1']/div")
     private WebElement computeEngine;
     @FindBy(name = "quantity")
@@ -26,7 +25,8 @@ public class CalculatorPage extends AbstractPage {
     private WebElement provisioningModel;
     @FindBy(id = "select_value_label_92")
     private WebElement machineFamily;
-    @FindBy(id = "select_value_label_93")
+    @FindBy(css = "#select_value_label_93")
+    //id = "select_value_label_93")
     private WebElement series;
     @FindBy(id = "select_value_label_94")
     private WebElement machineType;
@@ -35,6 +35,7 @@ public class CalculatorPage extends AbstractPage {
 
     public CalculatorPage(WebDriver driver) {
         super(driver);
+        js = (JavascriptExecutor) driver;
         PageFactory.initElements(this.driver, this);
     }
 
@@ -57,20 +58,18 @@ public class CalculatorPage extends AbstractPage {
     public Estimate addSpecifications(String numberOfInstances) {
         computeEngine.click();
         quantity.sendKeys(numberOfInstances);
-        series.click();
-        WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
-        //waitForClickability(seriesOption, Duration.ofSeconds(20L));
 
-        FluentWait wait = new FluentWait(driver);
-        wait.withTimeout(Duration.ofSeconds(5000L));
-        wait.pollingEvery(Duration.ofMillis(100L));
+        js.executeScript("window.scrollBy(0,450)", "");
+        series.click();
+
+        WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
         seriesOption.click();
 
         machineType.click();
         WebElement machine = driver.findElement(By.xpath(
                 "//*[@id='select_container_126']/md-select-menu/md-content/md-optgroup[3]/md-option[4]"));
-         waitForClickability(machine, Duration.ofSeconds(10L));
-         machine.click();
+        waitForClickability(machine, Duration.ofSeconds(10L));
+        machine.click();
 
         addGPUs.click();
         WebElement GPUTypeDropdown = driver.findElement(By.cssSelector("#select_505"));

@@ -22,18 +22,19 @@ public class EmailGeneratorPage extends AbstractPage {
         return this;
     }
 
-    public EmailGeneratorPage clickAgreeButton(){
+    public EmailGeneratorPage clickAgreeButton() {
         WebElement agreeButton = driver.findElement(By.xpath("//*[@id='accept']"));
         agreeButton.click();
         return this;
     }
-    public EmailGeneratorPage copyEmailToClipBoard(){
+
+    public EmailGeneratorPage copyEmailToClipBoard() {
         WebElement copyButton = driver.findElement(By.xpath("//*[@id='cprnd']"));
         copyButton.click();
         return this;
     }
 
-    public EmailGeneratorPage checkInbox(){
+    public EmailGeneratorPage checkInbox() {
         WebElement goToInboxButton = driver.findElement(By.xpath("/html/body/div/div[2]/main/div/div[2]/div/div[1]/div[2]/button[2]"));
         goToInboxButton.click();
         return this;

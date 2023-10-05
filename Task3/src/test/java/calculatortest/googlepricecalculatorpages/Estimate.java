@@ -7,11 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.openqa.selenium.support.PageFactory.initElements;
-
-public class Estimate extends AbstractPage{
+public class Estimate extends AbstractPage {
     private final CalculatorPage calculator;
-    private JavascriptExecutor js;
+    private final JavascriptExecutor js;
     @FindBy(css = "#compute > md-toolbar > h2 > span:nth-child(1)")
     private WebElement computeEngineSign;
     @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-toolbar/div/h2[2]")
@@ -32,7 +30,7 @@ public class Estimate extends AbstractPage{
     private WebElement instanceType;
 
     @FindBy(xpath =
-    "//*[@id='compute']/md-list/md-list-item[6]/div[1]")
+            "//*[@id='compute']/md-list/md-list-item[6]/div[1]")
     private WebElement operatingSystem;
 
     @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[7]/div[1]")
@@ -47,6 +45,7 @@ public class Estimate extends AbstractPage{
     protected Estimate(WebDriver driver, CalculatorPage calculator) {
         super(driver);
         this.calculator = calculator;
+        js = (JavascriptExecutor) driver;
         PageFactory.initElements(calculator.driver, this);
     }
 
@@ -55,55 +54,56 @@ public class Estimate extends AbstractPage{
         return this;
     }
 
-    public String getComputeEngineSign(){
-        return  computeEngineSign.getText();
+    public String getComputeEngineSign() {
+        return computeEngineSign.getText();
     }
+
     public String totalEstimatedCost() {
         return totalEstimatedCost.getText();
     }
 
-    public String getMonthlyEstimate(){
+    public String getMonthlyEstimate() {
         return monthlyEstimate.getText();
     }
 
-    public String getNumberOfEngines(){
+    public String getNumberOfEngines() {
         return numberOfEngines.getText();
     }
 
-    public String getRegion(){
-        return  region.getText();
+    public String getRegion() {
+        return region.getText();
     }
 
-    public String getCommitmentTerm(){
+    public String getCommitmentTerm() {
         return commitmentTerm.getText();
     }
 
-    public String getProvisioningModel(){
+    public String getProvisioningModel() {
         return provisioningModel.getText();
     }
-    public String getInstanceType(){
+
+    public String getInstanceType() {
         return instanceType.getText();
     }
 
 
-    public String getOperatingSystem(){
-        return  operatingSystem.getText();
+    public String getOperatingSystem() {
+        return operatingSystem.getText();
     }
 
-    public String getLocalSSD(){
+    public String getLocalSSD() {
         return localSSD.getText();
     }
 
-    public boolean clickSendEstimateButton(){
+    public boolean clickSendEstimateButton() {
         emailEstimateButton.click();
         return emailEstimateButton.isSelected();
     }
 
 
+    public Estimate sendEstimateInEmail(String email) {
 
-    public Estimate sendEstimateInEmail(String email){
-        js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,450)", "");
+        js.executeScript("window.scrollBy(0,850)", "");
         emailEstimateButton.click();
         WebElement emailField = driver.findElement(By.xpath("//*[@id='input_615']"));
         emailField.click();

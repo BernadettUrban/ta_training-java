@@ -20,6 +20,7 @@ public class InboxPage extends AbstractPage {
     private WebElement refreshButton;
     @FindBy(id = "ifmail")
     private WebElement mailFraim;
+
     public InboxPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -34,6 +35,7 @@ public class InboxPage extends AbstractPage {
     public String mailCount() {
         return mailCount.getText();
     }
+
     public void waitForNewEmail() {
         new FluentWait<>(refreshButton)
                 .withTimeout(Duration.ofSeconds(30L))

@@ -15,8 +15,16 @@ public class DriverSingleton {
     public static WebDriver getDriver() {
         if (null == driver) {
             WebDriverManager.chromedriver().setup();
+            ChromeOptions options = new ChromeOptions();
 
-            driver = new ChromeDriver();
+            options.addArguments("start-maximized");
+
+            options.addArguments("disable-infobars");
+
+            options.addArguments("--disable-extensions");
+
+            driver = new ChromeDriver(options);
+
         }
         driver.manage().window().maximize();
 

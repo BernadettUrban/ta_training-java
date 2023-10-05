@@ -12,7 +12,6 @@ import calculatortest.googlepricecalculatorpages.StartPage;
 import calculatortest.util.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
-import org.testng.annotations.AfterTest;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -29,15 +28,15 @@ public class CommonTestConditions {
     protected CalculatorPage calculatorPage;
     protected Estimate estimate;
     protected EmailGeneratorPage emailGeneratorPage;
-    MainEmailPage mainEmailPage;
-    InboxPage inboxPage;
-    EstimateMailPage estimateMailPage;
+    protected MainEmailPage mainEmailPage;
+    protected InboxPage inboxPage;
+    protected EstimateMailPage estimateMailPage;
 
     public void initDriver() {
         driver = DriverSingleton.getDriver();
 
     }
-    
+
     public void initStartPage() {
         initDriver();
         startPage = new StartPage(driver);
@@ -56,10 +55,6 @@ public class CommonTestConditions {
 
         estimate = calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);
-    }
-
-    public String getMonthlyCostFromEstimate() {
-        return stringUtils.regexForUSD(estimate.totalEstimatedCost());
     }
 
     public void initInboxPageTest() throws IOException, UnsupportedFlavorException {
@@ -87,7 +82,7 @@ public class CommonTestConditions {
 
     }
 
-    @AfterTest(alwaysRun = true)
+    //@AfterTest(alwaysRun = true)
     public void stopBrowser() {
         DriverSingleton.closeDriver();
     }

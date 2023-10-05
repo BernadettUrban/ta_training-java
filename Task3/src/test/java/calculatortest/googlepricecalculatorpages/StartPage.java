@@ -11,15 +11,13 @@ import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
 
-public class StartPage extends AbstractPage{
+public class StartPage extends AbstractPage {
 
     public static final String BASE_URL = "https://cloud.google.com/";
     public static final String QUERY = "Google Cloud Platform Pricing Calculator";
-
-    private StringUtils stringUtils = new StringUtils();
-
     @FindBy(name = "q")
     WebElement searchBar;
+    private final StringUtils stringUtils = new StringUtils();
 
     public StartPage(WebDriver driver) {
         super(driver);
@@ -41,7 +39,7 @@ public class StartPage extends AbstractPage{
         return this;
     }
 
-    public SearchResultPage performSearch(String term){
+    public SearchResultPage performSearch(String term) {
         searchBar.click();
         searchBar.sendKeys(term);
         searchBar.sendKeys(Keys.ENTER);

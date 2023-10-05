@@ -30,10 +30,10 @@ public class InboxPageTest extends CommonTestConditions {
     public void estimateFromEmailIsCorrect() {
 
         estimateMailPage = inboxPage.getEstimateEmail();
-        String emailContetnt = estimateMailPage.getEstimateFromEmail();
+        String emailContent = estimateMailPage.getEstimateFromEmail();
 
         String expected = "1,081.20";
 
-        assertThat(Boolean.valueOf(emailContetnt.contains(expected)), equalTo(true));
+        assertThat(Boolean.valueOf(emailContent.contains(expected)), equalTo(true));
     }
 }

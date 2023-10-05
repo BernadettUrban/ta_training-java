@@ -24,7 +24,7 @@ public class MainEmailPage extends AbstractPage {
         return new MainEmailPage(driver);
     }
 
-    public EmailGeneratorPage clickGenerateEmail(){
+    public EmailGeneratorPage clickGenerateEmail() {
         acceptButton.click();
         randomEmailGeneratorLink.click();
         return new EmailGeneratorPage(driver);
