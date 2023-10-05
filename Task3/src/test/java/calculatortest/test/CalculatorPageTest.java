@@ -40,7 +40,6 @@ public class CalculatorPageTest {
         resultPage = startPage.performSearch(stringUtils.SEARCH_TERM);
         calculatorPage = resultPage.navigateToCalculator();
 
-        //calculatorPage.clickOkButton();
         estimate =  calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);
 
@@ -119,7 +118,10 @@ public class CalculatorPageTest {
         assertThat(Boolean.valueOf(actual), equalTo(true));
     }
 
+    public void sendEstimateInEmailIsClicked(){
+        boolean actual = estimate.clickSendEstimateButton();
 
+    }
 
   //  @Test(priority=10)
     public void insertEmailIntoForm() throws IOException, UnsupportedFlavorException {

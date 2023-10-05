@@ -35,7 +35,7 @@ public class InboxPageTest {
     EmailGeneratorPage emailGeneratorPage;
     InboxPage inboxPage;
     StringUtils stringUtils = new StringUtils();
-    String tabForEmailGenerator;
+
     EstimateMailPage estimateMailPage;
 
     @BeforeTest()
@@ -49,25 +49,22 @@ public class InboxPageTest {
         resultPage = startPage.performSearch(stringUtils.SEARCH_TERM);
         calculatorPage = resultPage.navigateToCalculator();
 
-        //calculatorPage.clickOkButton();
+
         estimate =  calculatorPage.switchToMyFrame()
                 .addSpecifications(stringUtils.NUMBER_OF_INSTANCES);
-        String originalWindow = driver.getWindowHandle();
+        String originalWindowEstimate = driver.getWindowHandle();
         WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
         newTab.get(stringUtils.BASE_URL_FOR_EMAIL);
-        tabForEmailGenerator = newTab.getWindowHandle();
+        String tabForEmailGenerator = newTab.getWindowHandle();
         mainEmailPage = new MainEmailPage(driver);
         emailGeneratorPage = mainEmailPage.clickGenerateEmail();
-                //new EmailGeneratorPage(driver);
 
-
-       // emailGeneratorPage.clickAgreeButton();
         emailGeneratorPage.copyEmailToClipBoard();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
         String email = (String) clipboard.getData(DataFlavor.stringFlavor);
 
-        driver.switchTo().window(originalWindow);
+        driver.switchTo().window(originalWindowEstimate);
         calculatorPage.switchToMyFrame();
         estimate.sendEstimateInEmail(email);
         driver.switchTo().window(tabForEmailGenerator);
@@ -86,8 +83,6 @@ public class InboxPageTest {
     @Test
     public void estimateEmailArrivedTest() throws IOException, UnsupportedFlavorException {
 
-
-
         String mailcount = inboxPage.mailCount();
         boolean startsWithZero = mailcount.startsWith("0");
         assertThat(Boolean.valueOf(mailcount.startsWith("0")), equalTo(false));
@@ -97,8 +92,7 @@ public class InboxPageTest {
     @Test
     public void estimateFromEmailIsCorrect(){
 
-        estimateMailPage = inboxPage.getEstimateEmail();
-                //new EstimateMailPage(driver);
+        //estimateMailPage = inboxPage.getEstimateEmail();
         String emailContetnt = estimateMailPage.getEstimateFromEmail();
         String expectedMonthylyCost = "1,081.20";
         assertThat(Boolean.valueOf(emailContetnt.contains(expectedMonthylyCost)), equalTo(true));

@@ -94,9 +94,9 @@ public class Estimate extends AbstractPage{
         return localSSD.getText();
     }
 
-    public Estimate clickSendEstimateButton(){
+    public boolean clickSendEstimateButton(){
         emailEstimateButton.click();
-        return this;
+        return emailEstimateButton.isSelected();
     }
 
 

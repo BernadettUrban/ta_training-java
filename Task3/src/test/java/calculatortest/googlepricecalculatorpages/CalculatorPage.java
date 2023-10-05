@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -58,7 +59,11 @@ public class CalculatorPage extends AbstractPage {
         quantity.sendKeys(numberOfInstances);
         series.click();
         WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
-        waitForClickability(seriesOption, Duration.ofSeconds(20L));
+        //waitForClickability(seriesOption, Duration.ofSeconds(20L));
+
+        FluentWait wait = new FluentWait(driver);
+        wait.withTimeout(Duration.ofSeconds(5000L));
+        wait.pollingEvery(Duration.ofMillis(100L));
         seriesOption.click();
 
         machineType.click();
