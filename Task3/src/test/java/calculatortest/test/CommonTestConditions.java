@@ -12,6 +12,7 @@ import calculatortest.googlepricecalculatorpages.StartPage;
 import calculatortest.util.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
+import org.testng.annotations.AfterTest;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -37,20 +38,20 @@ public class CommonTestConditions {
 
     }
 
-    public void initStartPage() {
+    public void initStartPageTest() {
         initDriver();
         startPage = new StartPage(driver);
         startPage.openPage();
         startPage.clickOkButton();
     }
 
-    public void initSearchResult() {
-        initStartPage();
+    public void initSearchResultTest() {
+        initStartPageTest();
         searchResultPage = startPage.performSearch(stringUtils.SEARCH_TERM);
     }
 
     public void initCalculatorPageTest() {
-        initSearchResult();
+        initSearchResultTest();
         calculatorPage = searchResultPage.navigateToCalculator();
 
         estimate = calculatorPage.switchToMyFrame()
@@ -82,7 +83,7 @@ public class CommonTestConditions {
 
     }
 
-    //@AfterTest(alwaysRun = true)
+    @AfterTest(alwaysRun = true)
     public void stopBrowser() {
         DriverSingleton.closeDriver();
     }

@@ -15,9 +15,9 @@ public class StartPage extends AbstractPage {
 
     public static final String BASE_URL = "https://cloud.google.com/";
     public static final String QUERY = "Google Cloud Platform Pricing Calculator";
+    private final StringUtils stringUtils = new StringUtils();
     @FindBy(name = "q")
     WebElement searchBar;
-    private final StringUtils stringUtils = new StringUtils();
 
     public StartPage(WebDriver driver) {
         super(driver);

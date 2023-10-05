@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class StartPageTest extends CommonTestConditions {
     @BeforeTest()
     public void setUp() {
-        initStartPage();
+        initStartPageTest();
     }
 
     @Test

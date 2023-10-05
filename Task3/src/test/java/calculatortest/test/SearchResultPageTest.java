@@ -10,7 +10,7 @@ public class SearchResultPageTest extends CommonTestConditions {
 
     @BeforeTest()
     public void setUp() {
-        initSearchResult();
+        initSearchResultTest();
     }
 
     @Test

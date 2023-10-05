@@ -32,6 +32,16 @@ public class CalculatorPage extends AbstractPage {
     private WebElement machineType;
     @FindBy(css = "#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div:nth-child(15) > div.layout-column.flex-gt-sm-90.flex-80 > md-input-container > md-checkbox")
     private WebElement addGPUs;
+    @FindBy(css = "#select_value_label_463")
+    private WebElement localSSD;
+
+    @FindBy(xpath = "//*[@id='select_131']")
+    private WebElement datacenterLocation;
+
+    @FindBy(xpath = "//*[@id='select_138']")
+    private WebElement committedUsage;
+    @FindBy(xpath = "//*[@id='mainForm']/div[2]/div/md-card/md-card-content/div/div[1]/form/div[20]/button")
+    private WebElement addToEstimateButton;
 
     public CalculatorPage(WebDriver driver) {
         super(driver);
@@ -76,8 +86,8 @@ public class CalculatorPage extends AbstractPage {
         waitForClickability(GPUTypeDropdown, Duration.ofSeconds(10L));
         GPUTypeDropdown.click();
 
-        WebElement tesla = driver.findElement(By.cssSelector("#select_option_512 > div"));
-        tesla.click();
+        WebElement GPUoption = driver.findElement(By.cssSelector("#select_option_512 > div"));
+        GPUoption.click();
 
         WebElement numberOfGPUsDropdown = driver.findElement(By.cssSelector("#select_value_label_504"));
         numberOfGPUsDropdown.click();
@@ -87,8 +97,6 @@ public class CalculatorPage extends AbstractPage {
         valueOfGPUs.click();
 
 
-        WebElement localSSD = driver.findElement(By.cssSelector("#select_value_label_463"));
-
         waitForClickability(localSSD, Duration.ofSeconds(10L));
         localSSD.click();
 
@@ -97,13 +105,12 @@ public class CalculatorPage extends AbstractPage {
         waitForClickability(SSDoption, Duration.ofSeconds(10L));
         SSDoption.click();
 
-        WebElement datacenterLocation = driver.findElement(By.xpath("//*[@id='select_131']"));
         datacenterLocation.click();
 
         WebElement datacenterOption = driver.findElement(By.xpath("//*[@id='select_option_263']"));
         waitForClickability(datacenterOption, Duration.ofSeconds(10L));
         datacenterOption.click();
-        WebElement committedUsage = driver.findElement(By.xpath("//*[@id='select_138']"));
+
         committedUsage.click();
 
         WebElement usageOption = driver.findElement(By.cssSelector("#select_option_136"));
@@ -111,7 +118,6 @@ public class CalculatorPage extends AbstractPage {
         waitForClickability(usageOption, Duration.ofSeconds(10L));
         usageOption.click();
 
-        WebElement addToEstimateButton = driver.findElement(By.xpath("//*[@id='mainForm']/div[2]/div/md-card/md-card-content/div/div[1]/form/div[20]/button"));
         addToEstimateButton.click();
 
         return new Estimate(driver, this);

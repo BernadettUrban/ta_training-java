@@ -103,7 +103,7 @@ public class Estimate extends AbstractPage {
 
     public Estimate sendEstimateInEmail(String email) {
 
-        js.executeScript("window.scrollBy(0,850)", "");
+        js.executeScript("window.scrollBy(0,550)", "");
         emailEstimateButton.click();
         WebElement emailField = driver.findElement(By.xpath("//*[@id='input_615']"));
         emailField.click();

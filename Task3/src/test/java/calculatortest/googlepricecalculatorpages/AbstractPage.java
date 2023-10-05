@@ -12,6 +12,7 @@ public abstract class AbstractPage {
     protected final int WAIT_TIMEOUT_SECONDS = 30;
     protected WebDriver driver;
     protected StringUtils stringUtils = new StringUtils();
+
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;
 
