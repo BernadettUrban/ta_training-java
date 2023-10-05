@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public abstract class AbstractPage {
-    protected final int WAIT_TIMEOUT_SECONDS = 30;
+    protected final int WAIT_TIMEOUT_SECONDS = 10;
     protected WebDriver driver;
     protected StringUtils stringUtils = new StringUtils();
 
