@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 public class CalculatorPage extends AbstractPage {
 
-    public static final String BASE_URL = "https://cloud.google.com/products/calculator";
     private final JavascriptExecutor js;
     @FindBy(xpath = "//*[@id='tab-item-1']/div")
     private WebElement computeEngine;
@@ -26,7 +25,6 @@ public class CalculatorPage extends AbstractPage {
     @FindBy(id = "select_value_label_92")
     private WebElement machineFamily;
     @FindBy(css = "#select_value_label_93")
-    //id = "select_value_label_93")
     private WebElement series;
     @FindBy(id = "select_value_label_94")
     private WebElement machineType;

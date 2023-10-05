@@ -18,7 +18,7 @@ public class EstimateMailPage extends AbstractPage {
 
     @Override
     protected AbstractPage openPage() {
-        return null;
+        return this;
     }
 
     public String getEstimateFromEmail() {

@@ -19,7 +19,7 @@ public class SearchResultPage extends AbstractPage {
 
     @Override
     public SearchResultPage openPage() {
-        return null;
+        return this;
     }
 
 

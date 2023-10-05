@@ -19,9 +19,9 @@ public class MainEmailPage extends AbstractPage {
     }
 
     @Override
-    protected AbstractPage openPage() {
+    protected MainEmailPage openPage() {
         driver.get(stringUtils.BASE_URL_FOR_EMAIL);
-        return new MainEmailPage(driver);
+        return this;
     }
 
     public EmailGeneratorPage clickGenerateEmail() {

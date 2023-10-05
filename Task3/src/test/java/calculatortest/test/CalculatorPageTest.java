@@ -10,7 +10,6 @@ public class CalculatorPageTest extends CommonTestConditions {
 
     @BeforeTest()
     public void setUp() {
-
         initCalculatorPageTest();
     }
 

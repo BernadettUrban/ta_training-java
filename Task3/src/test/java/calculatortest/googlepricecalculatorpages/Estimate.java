@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class Estimate extends AbstractPage {
-    private final CalculatorPage calculator;
     private final JavascriptExecutor js;
     @FindBy(css = "#compute > md-toolbar > h2 > span:nth-child(1)")
     private WebElement computeEngineSign;
@@ -44,7 +43,6 @@ public class Estimate extends AbstractPage {
 
     protected Estimate(WebDriver driver, CalculatorPage calculator) {
         super(driver);
-        this.calculator = calculator;
         js = (JavascriptExecutor) driver;
         PageFactory.initElements(calculator.driver, this);
     }
@@ -93,11 +91,6 @@ public class Estimate extends AbstractPage {
 
     public String getLocalSSD() {
         return localSSD.getText();
-    }
-
-    public boolean clickSendEstimateButton() {
-        emailEstimateButton.click();
-        return emailEstimateButton.isSelected();
     }
 
 
