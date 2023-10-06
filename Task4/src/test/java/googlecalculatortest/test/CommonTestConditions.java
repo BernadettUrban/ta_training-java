@@ -10,9 +10,11 @@ import googlecalculatortest.pages.googlepricingcalculatorpages.Estimate;
 import googlecalculatortest.pages.googlepricingcalculatorpages.SearchResultPage;
 import googlecalculatortest.pages.googlepricingcalculatorpages.StartPage;
 import googlecalculatortest.util.StringUtils;
+import googlecalculatortest.util.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.Listeners;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -20,6 +22,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
+@Listeners({TestListener.class})
 public class CommonTestConditions {
     protected WebDriver driver;
     protected StringUtils stringUtils = new StringUtils();
@@ -34,7 +37,6 @@ public class CommonTestConditions {
 
     public void initDriver() {
         driver = DriverSingleton.getDriver();
-
     }
 
     public void initStartPageTest() {
