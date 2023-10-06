@@ -1,0 +1,29 @@
+package googlecalculatortest.pages.emailpages;
+
+
+import googlecalculatortest.pages.AbstractPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class EstimateMailPage extends AbstractPage {
+
+    @FindBy(css = "#mail h2")
+    private WebElement monthlyCost;
+
+    public EstimateMailPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(this.driver, this);
+    }
+
+    @Override
+    protected AbstractPage openPage() {
+        return this;
+    }
+
+    public String getEstimateFromEmail() {
+
+        return monthlyCost.getText();
+    }
+}
