@@ -99,36 +99,33 @@ public class CalculatorPage extends AbstractPage {
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", seriesOption);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineType);
-        waitForClickability(machine, Duration.ofSeconds(10L));
-        machine.click();
 
-        addGPUs.click();
-        waitForClickability(GPUTypeDropdown, Duration.ofSeconds(10L));
-        GPUTypeDropdown.click();
-        GPUoption.click();
-
-        numberOfGPUsDropdown.click();
-
-        waitForClickability(valueOfGPUs, Duration.ofSeconds(10L));
-        valueOfGPUs.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machine);
 
 
-        waitForClickability(localSSD, Duration.ofSeconds(10L));
-        localSSD.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addGPUs);
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", GPUTypeDropdown);
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", GPUoption);
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", numberOfGPUsDropdown);
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", valueOfGPUs);
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", localSSD);
 
 
-        waitForClickability(SSDoption, Duration.ofSeconds(10L));
-        SSDoption.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", SSDoption);
 
-        datacenterLocation.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", datacenterLocation);
 
-        waitForClickability(datacenterOption, Duration.ofSeconds(10L));
-        datacenterOption.click();
 
-        committedUsage.click();
-        
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", datacenterOption);
 
-        waitForClickability(usageOption, Duration.ofSeconds(10L));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", committedUsage);
+
+        waitForClickability( usageOption, Duration.ofSeconds(10L));
         usageOption.click();
 
         addToEstimateButton.click();

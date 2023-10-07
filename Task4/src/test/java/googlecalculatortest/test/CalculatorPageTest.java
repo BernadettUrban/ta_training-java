@@ -36,57 +36,41 @@ public class CalculatorPageTest extends CommonTestConditions {
     }
 
     @Test(priority = 4)
-    public void regionIsCorrectInEstimate() {
-        String actualString = estimate.getRegion();
-        boolean actual = actualString.contains(stringUtils.REGION);
-        assertThat(Boolean.valueOf(actual), equalTo(true));
+    public void estimateIsCreatedWithCorrectInput() {
+        String region = estimate.getRegion();
+        boolean actualRegion = region.contains(stringUtils.REGION);
+        assertThat(Boolean.valueOf(actualRegion), equalTo(true));
+
+        String umberOfEngines = estimate.getNumberOfEngines();
+        boolean actualNumberOfEngines = umberOfEngines.contains(stringUtils.NUMBER_OF_INSTANCES);
+        assertThat(Boolean.valueOf(actualNumberOfEngines), equalTo(true));
+
+        String commitmentTerm = estimate.getCommitmentTerm();
+        boolean actualCommitmentTerm = commitmentTerm.contains(stringUtils.COMMITMENT_TERM);
+        assertThat(Boolean.valueOf(actualCommitmentTerm), equalTo(true));
+
+        String provisioningModel = estimate.getProvisioningModel();
+        boolean actualProvisioningModel = provisioningModel.contains(stringUtils.PROVISIONING_MODEL);
+        assertThat(Boolean.valueOf(actualProvisioningModel), equalTo(true));
+
+
+        String instanceType = estimate.getInstanceType();
+        boolean actualInstanceType = instanceType.contains(stringUtils.INSTANCE_TYPE);
+        assertThat(Boolean.valueOf(actualInstanceType), equalTo(true));
+
+
+        String operatingSystem = estimate.getOperatingSystem();
+        boolean actualOperatingSystem = operatingSystem.contains(stringUtils.OPERATING_SYSTEM);
+        assertThat(Boolean.valueOf(actualOperatingSystem), equalTo(true));
+
+
+        String localSSD = estimate.getLocalSSD();
+        boolean actualLocalSSD = localSSD.contains(stringUtils.LOCAL_SSD);
+        assertThat(Boolean.valueOf(actualLocalSSD), equalTo(true));
+
     }
 
     @Test(priority = 5)
-    public void numberOfEnginesIsCorrect() {
-        String actualString = estimate.getNumberOfEngines();
-        boolean actual = actualString.contains(stringUtils.NUMBER_OF_INSTANCES);
-        assertThat(Boolean.valueOf(actual), equalTo(true));
-    }
-
-    @Test(priority = 6)
-    public void commitmentTermIsCorrect() {
-        String actualString = estimate.getCommitmentTerm();
-        boolean actual = actualString.contains(stringUtils.COMMITMENT_TERM);
-        assertThat(Boolean.valueOf(actual), equalTo(true));
-    }
-
-
-    @Test(priority = 7)
-    public void getProvisioningModel() {
-        String actualString = estimate.getProvisioningModel();
-        boolean actual = actualString.contains(stringUtils.PROVISIONING_MODEL);
-        assertThat(Boolean.valueOf(actual), equalTo(true));
-    }
-
-
-    @Test(priority = 8)
-    public void instanceTypeIsCorrect() {
-        String actualString = estimate.getInstanceType();
-        boolean actual = actualString.contains(stringUtils.INSTANCE_TYPE);
-        assertThat(Boolean.valueOf(actual), equalTo(true));
-    }
-
-    @Test(priority = 9)
-    public void operatingSystemIsCorrect() {
-        String actualString = estimate.getOperatingSystem();
-        boolean actual = actualString.contains(stringUtils.OPERATING_SYSTEM);
-        assertThat(Boolean.valueOf(actual), equalTo(true));
-    }
-
-    @Test(priority = 10)
-    public void localSSDIsCorrect() {
-        String actualString = estimate.getLocalSSD();
-        boolean actual = actualString.contains(stringUtils.LOCAL_SSD);
-        assertThat(Boolean.valueOf(actual), equalTo(true));
-    }
-
-    @Test(priority = 11)
     public void currencyIsCorrect() {
         String actualString = estimate.totalEstimatedCost();
         String expected = "USD";
