@@ -16,7 +16,7 @@ public class CalculatorPageTest extends CommonTestConditions {
     @Test(priority = 1)
     public void computeEngineSelected() {
         String actual = estimate.getComputeEngineSign();
-        String expected = "Compute Engine1";
+        String expected = "Compute Engine";
         assertThat(actual, equalTo(expected));
     }
 

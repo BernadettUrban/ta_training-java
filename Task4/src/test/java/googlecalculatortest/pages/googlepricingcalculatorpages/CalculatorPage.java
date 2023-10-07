@@ -15,30 +15,56 @@ import java.util.concurrent.TimeUnit;
 public class CalculatorPage extends AbstractPage {
 
     private final JavascriptExecutor js;
-    @FindBy(xpath = "//*[@id='tab-item-1']/div")
+    @FindBy(css = "#tab-item-1 > div")
     private WebElement computeEngine;
     @FindBy(name = "quantity")
     private WebElement quantity;
-    @FindBy(id = "select_value_label_90")
+    @FindBy(css = "#select_value_label_90")
     private WebElement opSystem;
-    @FindBy(id = "select_value_label_91")
+    @FindBy(css = "#select_value_label_91")
     private WebElement provisioningModel;
-    @FindBy(id = "select_value_label_92")
+    @FindBy(css = "#select_value_label_92")
     private WebElement machineFamily;
     @FindBy(css = "#select_value_label_93")
     private WebElement series;
-    @FindBy(id = "select_value_label_94")
+
+    @FindBy(css = "#select_option_220")
+    private WebElement seriesOption;
+
+    @FindBy(css = "#select_value_label_94")
     private WebElement machineType;
+    @FindBy(
+            //css = "#select_option_294")
+            xpath = "//*[@id='select_container_126']/md-select-menu/md-content/md-optgroup[3]/md-option[4]")
+    private WebElement machine;
     @FindBy(css = "#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div:nth-child(15) > div.layout-column.flex-gt-sm-90.flex-80 > md-input-container > md-checkbox")
     private WebElement addGPUs;
+    @FindBy(css = "#select_505")
+    private WebElement GPUTypeDropdown;
+    @FindBy(css = "#select_option_512 > div")
+    private WebElement GPUoption;
+
+    @FindBy(css = "#select_value_label_504")
+    private WebElement numberOfGPUsDropdown;
+    @FindBy(css = "#select_option_515")
+    private WebElement valueOfGPUs;
+
+
     @FindBy(css = "#select_value_label_463")
     private WebElement localSSD;
+    @FindBy(css = "#select_option_490")
+    private WebElement SSDoption;
 
-    @FindBy(xpath = "//*[@id='select_131']")
+
+    @FindBy(css = "#select_131")
     private WebElement datacenterLocation;
+    @FindBy(css = "#select_option_263")
+    private WebElement datacenterOption;
 
-    @FindBy(xpath = "//*[@id='select_138']")
+    @FindBy(css = "#select_138")
     private WebElement committedUsage;
+    @FindBy(css = "#select_option_136")
+    private WebElement usageOption;
     @FindBy(xpath = "//*[@id='mainForm']/div[2]/div/md-card/md-card-content/div/div[1]/form/div[20]/button")
     private WebElement addToEstimateButton;
 
@@ -71,48 +97,36 @@ public class CalculatorPage extends AbstractPage {
         js.executeScript("window.scrollBy(0,450)", "");
         series.click();
 
-        WebElement seriesOption = driver.findElement(By.cssSelector("#select_option_220"));
-        seriesOption.click();
-
-        machineType.click();
-        WebElement machine = driver.findElement(By.xpath(
-                "//*[@id='select_container_126']/md-select-menu/md-content/md-optgroup[3]/md-option[4]"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", seriesOption);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineType);
         waitForClickability(machine, Duration.ofSeconds(10L));
         machine.click();
 
         addGPUs.click();
-        WebElement GPUTypeDropdown = driver.findElement(By.cssSelector("#select_505"));
         waitForClickability(GPUTypeDropdown, Duration.ofSeconds(10L));
         GPUTypeDropdown.click();
-
-        WebElement GPUoption = driver.findElement(By.cssSelector("#select_option_512 > div"));
         GPUoption.click();
 
-        WebElement numberOfGPUsDropdown = driver.findElement(By.cssSelector("#select_value_label_504"));
         numberOfGPUsDropdown.click();
 
-        WebElement valueOfGPUs = driver.findElement(By.cssSelector("#select_option_515"));
-        waitForClickability(valueOfGPUs, Duration.ofSeconds(10));
+        waitForClickability(valueOfGPUs, Duration.ofSeconds(10L));
         valueOfGPUs.click();
 
 
         waitForClickability(localSSD, Duration.ofSeconds(10L));
         localSSD.click();
 
-        WebElement SSDoption = driver.findElement(By.cssSelector("#select_option_490"));
 
         waitForClickability(SSDoption, Duration.ofSeconds(10L));
         SSDoption.click();
 
         datacenterLocation.click();
 
-        WebElement datacenterOption = driver.findElement(By.xpath("//*[@id='select_option_263']"));
         waitForClickability(datacenterOption, Duration.ofSeconds(10L));
         datacenterOption.click();
 
         committedUsage.click();
-
-        WebElement usageOption = driver.findElement(By.cssSelector("#select_option_136"));
+        
 
         waitForClickability(usageOption, Duration.ofSeconds(10L));
         usageOption.click();
