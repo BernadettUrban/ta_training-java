@@ -96,8 +96,10 @@ public class CalculatorPage extends AbstractPage {
 
         js.executeScript("window.scrollBy(0,450)", "");
         series.click();
-        seriesOption.click();
+        callJsExecutor(seriesOption);
+       // seriesOption.click();
 
+        waitForClickability(machineType, Duration.ofSeconds(10L));
         machineType.click();
 
         waitForClickability(machine, Duration.ofSeconds(10L));
