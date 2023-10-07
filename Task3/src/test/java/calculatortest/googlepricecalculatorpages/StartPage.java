@@ -1,6 +1,7 @@
 package calculatortest.googlepricecalculatorpages;
 
 import calculatortest.util.StringUtils;
+import com.google.common.base.Function;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -31,10 +32,16 @@ public class StartPage extends AbstractPage {
     }
 
     public StartPage clickOkButton() {
-        WebElement okButton = driver.findElement(By.xpath("//*[@id='yDmH0d']/div[3]/div/div/button"));
         FluentWait wait = new FluentWait(driver);
         wait.withTimeout(Duration.ofSeconds(5000L));
         wait.pollingEvery(Duration.ofMillis(100L));
+        WebElement okButton = (WebElement) wait.until(new Function<WebDriver, WebElement>() {
+            @Override
+            public WebElement apply(WebDriver input) {
+                return driver.findElement(By.cssSelector("#yDmH0d > div.U0ljZb > div > div > button"));
+            }
+
+        });
         okButton.click();
         return this;
     }
