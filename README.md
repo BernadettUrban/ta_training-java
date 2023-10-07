@@ -64,3 +64,5 @@ Other options leave in the default state.
 14. Press 'SEND EMAIL'.
 15. Wait for the cost estimate email and check that the emailed 'Total Estimated Monthly Cost' matches the result in the calculator.
 
+Task 4
+run with: mvn -Denvironment=qa clean test or mvn -Denvironment=dev clean test
