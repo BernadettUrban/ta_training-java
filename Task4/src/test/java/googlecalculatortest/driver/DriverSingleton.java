@@ -1,22 +1,22 @@
 package googlecalculatortest.driver;
 
+import googlecalculatortest.service.PropertyFileReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverSingleton {
 
     private static WebDriver driver;
+    public static final String BROWSER = "browser";
 
     public DriverSingleton() {
     }
 
     public static WebDriver getDriver() {
         if (null == driver){
-            switch (System.getProperty("browser")){
+            switch (PropertyFileReader.getEnvironment(BROWSER)){
                 case "edge": {
                     WebDriverManager.edgedriver();
                     driver = new EdgeDriver();
