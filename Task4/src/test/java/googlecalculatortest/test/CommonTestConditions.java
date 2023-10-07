@@ -14,6 +14,7 @@ import googlecalculatortest.util.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 
 import java.awt.*;
@@ -37,6 +38,8 @@ public class CommonTestConditions {
 
     public void initDriver() {
         driver = DriverSingleton.getDriver();
+        driver.manage().deleteAllCookies();
+
     }
 
     public void initStartPageTest() {
@@ -86,6 +89,7 @@ public class CommonTestConditions {
 
     @AfterTest(alwaysRun = true)
     public void stopBrowser() {
+
         DriverSingleton.closeDriver();
     }
 }

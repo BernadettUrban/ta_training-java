@@ -125,8 +125,7 @@ public class CalculatorPage extends AbstractPage {
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", committedUsage);
 
-        waitForClickability( usageOption, Duration.ofSeconds(10L));
-        usageOption.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", usageOption);
 
         addToEstimateButton.click();
 
