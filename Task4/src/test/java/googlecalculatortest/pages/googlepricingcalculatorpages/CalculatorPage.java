@@ -90,46 +90,58 @@ public class CalculatorPage extends AbstractPage {
 
     }
 
-    public Estimate addSpecifications(String numberOfInstances) {
+    public EstimatePage addSpecifications(String numberOfInstances) {
         computeEngine.click();
         quantity.sendKeys(numberOfInstances);
 
         js.executeScript("window.scrollBy(0,450)", "");
         series.click();
+        seriesOption.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", seriesOption);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineType);
+        machineType.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machine);
+        waitForClickability(machine, Duration.ofSeconds(10L));
+        machine.click();
 
+        addGPUs.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addGPUs);
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", GPUTypeDropdown);
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", GPUoption);
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", numberOfGPUsDropdown);
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", valueOfGPUs);
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", localSSD);
+        waitForClickability(GPUTypeDropdown, Duration.ofSeconds(10L));
+        GPUTypeDropdown.click();
 
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", SSDoption);
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", datacenterLocation);
+        GPUoption.click();
 
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", datacenterOption);
+        numberOfGPUsDropdown.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", committedUsage);
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", usageOption);
+        waitForClickability(valueOfGPUs, Duration.ofSeconds(10));
+        valueOfGPUs.click();
+
+
+        waitForClickability(localSSD, Duration.ofSeconds(10L));
+        localSSD.click();
+
+
+        waitForClickability(SSDoption, Duration.ofSeconds(10L));
+        SSDoption.click();
+
+        datacenterLocation.click();
+
+
+        waitForClickability(datacenterOption, Duration.ofSeconds(10L));
+        datacenterOption.click();
+
+        committedUsage.click();
+
+
+
+        waitForClickability(usageOption, Duration.ofSeconds(10L));
+        usageOption.click();
 
         addToEstimateButton.click();
 
-        return new Estimate(driver, this);
+        return new EstimatePage(driver, this);
     }
 
 }

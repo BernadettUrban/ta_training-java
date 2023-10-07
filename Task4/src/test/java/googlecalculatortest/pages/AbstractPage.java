@@ -2,6 +2,7 @@ package googlecalculatortest.pages;
 
 
 import googlecalculatortest.util.StringUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,5 +25,9 @@ public abstract class AbstractPage {
     public WebElement waitForClickability(WebElement element, Duration timeout) {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void callJsExecutor(WebElement webElement){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
     }
 }

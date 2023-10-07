@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Estimate extends AbstractPage {
+public class EstimatePage extends AbstractPage {
     private final JavascriptExecutor js;
     @FindBy(css = "#compute > md-toolbar > h2 > span:nth-child(1)")
     private WebElement computeEngineSign;
@@ -46,7 +46,7 @@ public class Estimate extends AbstractPage {
     private WebElement emailEstimateButton;
 
 
-    protected Estimate(WebDriver driver, CalculatorPage calculator) {
+    protected EstimatePage(WebDriver driver, CalculatorPage calculator) {
         super(driver);
         js = (JavascriptExecutor) driver;
         PageFactory.initElements(calculator.driver, this);
@@ -99,12 +99,14 @@ public class Estimate extends AbstractPage {
     }
 
 
-    public Estimate sendEstimateInEmail(String email) {
+    public EstimatePage sendEstimateInEmail(String email) {
 
         js.executeScript("window.scrollBy(0,550)", "");
-        emailEstimateButton.click();
+        callJsExecutor(emailEstimateButton);
+        //emailEstimateButton.click();
         WebElement emailField = driver.findElement(By.xpath("//*[@id='input_615']"));
-        emailField.click();
+        callJsExecutor(emailField);
+       // emailField.click();
         emailField.sendKeys(email);
         WebElement sendEmailButton = driver.findElement(By.xpath("//*[@id='dialogContent_621']/form/md-dialog-actions/button[2]"));
         sendEmailButton.click();
