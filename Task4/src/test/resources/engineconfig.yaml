@@ -7,6 +7,6 @@ machineType: "n1-standard-8 (vCPUs: 8, RAM: 30 GB)"
 addGPUs:
   gpuType: "NVIDIA Tesla V100"
   numberOfGPUs: 1
-localSSD: "2x375"
+localSSD: "2x375 Gb"
 datacenterLocation: "Frankfurt (europe-west3)"
 commitmentTerm: "1 Year"
