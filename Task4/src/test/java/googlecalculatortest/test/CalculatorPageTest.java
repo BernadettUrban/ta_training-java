@@ -43,42 +43,70 @@ public class CalculatorPageTest extends CommonTestConditions {
     public void estimateIsCreatedWithCorrectInput() throws IOException {
         EngineGenerator engineGenerator = new EngineGenerator();
         Engine engine = engineGenerator.readEngineFromConfig();
-        String region = estimate.getRegion();
-        boolean actualRegion = region.contains(engine.getDatacenterLocation());
-                //stringUtils.REGION);
-        assertThat(Boolean.valueOf(actualRegion), equalTo(true));
+        String region = stringUtils.splitEstimateLines(estimate.getRegion(), ": ", 1);
 
-        String umberOfEngines = estimate.getNumberOfEngines();
-        boolean actualNumberOfEngines = umberOfEngines.contains(engine.getNumberOfInstances().toString());
+        System.out.println(region);
+        boolean actualRegion = engine.getDatacenterLocation().contains(region);
+                //region.contains(engine.getDatacenterLocation());
+                //stringUtils.REGION);
+        System.out.println(engine.getDatacenterLocation());
+        System.out.println(engine.getDatacenterLocation().contains(region));
+       assertThat(Boolean.valueOf(engine.getDatacenterLocation().contains(region)), equalTo(true));
+
+        String numberOfEngines =
+                estimate.getNumberOfEngines();
+        boolean actualNumberOfEngines = numberOfEngines.contains(engine.getNumberOfInstances().toString());
                 //stringUtils.NUMBER_OF_INSTANCES);
         assertThat(Boolean.valueOf(actualNumberOfEngines), equalTo(true));
 
-        String commitmentTerm = estimate.getCommitmentTerm();
-        boolean actualCommitmentTerm = commitmentTerm.contains(engine.getCommitmentTerm());
+        String commitmentTerm = stringUtils.splitEstimateLines(estimate.getCommitmentTerm(), ": ", 1);
+                //estimate.getCommitmentTerm();
+        boolean actualCommitmentTerm = engine.getCommitmentTerm().contains(commitmentTerm);
+                //commitmentTerm.contains(engine.getCommitmentTerm());
                 //stringUtils.COMMITMENT_TERM);
+        System.out.println("commintment");
+        System.out.println(commitmentTerm);
+        System.out.println(engine.getCommitmentTerm());
         assertThat(Boolean.valueOf(actualCommitmentTerm), equalTo(true));
 
-        String provisioningModel = estimate.getProvisioningModel();
-        boolean actualProvisioningModel = provisioningModel.contains(engine.getProvisioningModel());
+        String provisioningModel = stringUtils.splitEstimateLines(estimate.getProvisioningModel(), ": ", 1);
+                //estimate.getProvisioningModel();
+        boolean actualProvisioningModel = engine.getProvisioningModel().contains(provisioningModel);
+                //provisioningModel.contains(engine.getProvisioningModel());
                 //stringUtils.PROVISIONING_MODEL);
+        System.out.println("provision");
+        System.out.println(provisioningModel);
+        System.out.println(engine.getProvisioningModel());
         assertThat(Boolean.valueOf(actualProvisioningModel), equalTo(true));
 
 
-        String instanceType = estimate.getInstanceType();
-        boolean actualInstanceType = instanceType.contains(engine.getMachineType());
+        String instanceTypeSplit1 = stringUtils.splitEstimateLines(estimate.getInstanceType(), "\n", 0);
+                //estimate.getInstanceType();
+        String instanceTypeSplit2 = stringUtils.splitEstimateLines(instanceTypeSplit1, ": ", 1);
+        boolean actualInstanceType = engine.getMachineType().contains(instanceTypeSplit2);
+                //instanceType.contains(engine.getMachineType());
                 //stringUtils.INSTANCE_TYPE);
+        System.out.println(instanceTypeSplit2);
+        System.out.println(engine.getMachineType());
         assertThat(Boolean.valueOf(actualInstanceType), equalTo(true));
 
 
-        String operatingSystem = estimate.getOperatingSystem();
-        boolean actualOperatingSystem = operatingSystem.contains(engine.getOperatingSystem());
+        String operatingSystem = stringUtils.splitEstimateLines(estimate.getOperatingSystem(), ": ", 1);
+                //estimate.getOperatingSystem();
+        boolean actualOperatingSystem = engine.getOperatingSystem().contains(operatingSystem);
+                //operatingSystem.contains(engine.getOperatingSystem());
                 //stringUtils.OPERATING_SYSTEM);
+        System.out.println(operatingSystem);
+        System.out.println(engine.getOperatingSystem());
         assertThat(Boolean.valueOf(actualOperatingSystem), equalTo(true));
 
 
-        String localSSD = estimate.getLocalSSD();
+        String localSSD = stringUtils.splitEstimateLines(estimate.getLocalSSD(), ": ", 1);
+                //estimate.getLocalSSD();
         boolean actualLocalSSD = localSSD.contains(engine.getLocalSSD());
                 //stringUtils.LOCAL_SSD);
+        System.out.println(localSSD);
+        System.out.println(actualLocalSSD);
         assertThat(Boolean.valueOf(actualLocalSSD), equalTo(true));
 
     }
