@@ -13,6 +13,7 @@ import googlecalculatortest.util.StringUtils;
 import googlecalculatortest.util.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Listeners;
 
@@ -87,7 +88,7 @@ public class CommonConditions {
 
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void stopBrowser() {
         driver.manage().deleteAllCookies(); // Deletes all the cookies
         DriverSingleton.closeDriver();

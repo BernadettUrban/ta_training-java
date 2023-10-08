@@ -2,6 +2,8 @@ package googlecalculatortest.test;
 
 import googlecalculatortest.model.Engine;
 import googlecalculatortest.service.EngineGenerator;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -10,9 +12,9 @@ import java.io.IOException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class CalculatorPageTest extends CommonTestConditions {
+public class CalculatorPageTest extends CommonConditions {
 
-    @BeforeTest()
+    @BeforeClass
     public void setUp() {
         initCalculatorPageTest();
     }
@@ -99,4 +101,8 @@ public class CalculatorPageTest extends CommonTestConditions {
         assertThat(Boolean.valueOf(actualString.contains(expected)), equalTo(true));
     }
 
+    @AfterClass
+    public void deleteCookies(){
+        driver.manage().deleteAllCookies();
+    }
 }
