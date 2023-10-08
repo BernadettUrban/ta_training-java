@@ -89,7 +89,7 @@ public class CommonTestConditions {
 
     @AfterTest(alwaysRun = true)
     public void stopBrowser() {
-
+        driver.manage().deleteAllCookies(); // Deletes all the cookies
         DriverSingleton.closeDriver();
     }
 }
