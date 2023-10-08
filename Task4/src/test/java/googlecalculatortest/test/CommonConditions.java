@@ -23,7 +23,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
 @Listeners({TestListener.class})
-public class CommonTestConditions {
+public class CommonConditions {
     protected WebDriver driver;
     protected StringUtils stringUtils = new StringUtils();
     protected StartPage startPage;

@@ -99,12 +99,15 @@ public class CalculatorPage extends AbstractPage {
         callJsExecutor(seriesOption);
        // seriesOption.click();
 
-        waitForClickability(machineType, Duration.ofSeconds(10L));
-        machineType.click();
+        //waitForClickability(machineType, Duration.ofSeconds(10L));
+       // machineType.click();
 
-        waitForClickability(machine, Duration.ofSeconds(10L));
-        machine.click();
+        callJsExecutor(machineType);
+       // waitForClickability(machine, Duration.ofSeconds(10L));
+       // machine.click();
+        callJsExecutor(machine);
 
+        waitForClickability(addGPUs, Duration.ofSeconds(10L));
         addGPUs.click();
 
         waitForClickability(GPUTypeDropdown, Duration.ofSeconds(10L));
