@@ -2,7 +2,6 @@ package googlecalculatortest.test;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -40,7 +39,7 @@ public class InboxPageTest extends CommonConditions {
     }
 
     @AfterClass
-    public void deleteCookies(){
+    public void deleteCookies() {
         driver.manage().deleteAllCookies();
     }
 }

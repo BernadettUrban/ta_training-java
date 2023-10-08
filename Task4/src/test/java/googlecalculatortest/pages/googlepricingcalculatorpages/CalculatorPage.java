@@ -97,14 +97,9 @@ public class CalculatorPage extends AbstractPage {
         js.executeScript("window.scrollBy(0,450)", "");
         series.click();
         callJsExecutor(seriesOption);
-       // seriesOption.click();
-
-        //waitForClickability(machineType, Duration.ofSeconds(10L));
-       // machineType.click();
 
         callJsExecutor(machineType);
-       // waitForClickability(machine, Duration.ofSeconds(10L));
-       // machine.click();
+
         callJsExecutor(machine);
 
         waitForClickability(addGPUs, Duration.ofSeconds(10L));
@@ -138,7 +133,6 @@ public class CalculatorPage extends AbstractPage {
         datacenterOption.click();
 
         committedUsage.click();
-
 
 
         waitForClickability(usageOption, Duration.ofSeconds(10L));

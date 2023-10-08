@@ -14,7 +14,6 @@ import googlecalculatortest.util.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Listeners;
 
 import java.awt.*;

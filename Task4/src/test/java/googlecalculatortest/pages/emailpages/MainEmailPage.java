@@ -1,7 +1,6 @@
 package googlecalculatortest.pages.emailpages;
 
 
-
 import googlecalculatortest.pages.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

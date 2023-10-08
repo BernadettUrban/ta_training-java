@@ -21,7 +21,7 @@ public class StringUtils {
         return sb.toString();
     }
 
-    public String splitEstimateLines(String line, String delimeter, Integer splitpart){
+    public String splitEstimateLines(String line, String delimeter, Integer splitpart) {
         String[] estimateElements = line.split(delimeter);
         return estimateElements[splitpart];
     }

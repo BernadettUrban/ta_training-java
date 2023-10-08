@@ -27,7 +27,7 @@ public abstract class AbstractPage {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void callJsExecutor(WebElement webElement){
+    public void callJsExecutor(WebElement webElement) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
     }
 }

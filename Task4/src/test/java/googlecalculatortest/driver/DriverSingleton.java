@@ -8,24 +8,20 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 public class DriverSingleton {
 
-    private static WebDriver driver;
     public static final String BROWSER = "browser";
+    private static WebDriver driver;
 
     public DriverSingleton() {
     }
 
     public static WebDriver getDriver() {
-        if (null == driver){
-            switch (PropertyFileReader.getEnvironment(BROWSER)){
-                case "edge": {
-                    WebDriverManager.edgedriver();
-                    driver = new EdgeDriver();
-                }
-                default: {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                }
+        if (null == driver) {
+            if (PropertyFileReader.getEnvironment(BROWSER).equals("edge")) {
+                WebDriverManager.edgedriver();
+                driver = new EdgeDriver();
             }
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
             driver.manage().window().maximize();
         }
         return driver;

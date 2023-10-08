@@ -4,7 +4,6 @@ import googlecalculatortest.model.Engine;
 import googlecalculatortest.service.EngineGenerator;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -49,7 +48,7 @@ public class CalculatorPageTest extends CommonConditions {
 
         boolean actualRegion = engine.getDatacenterLocation().contains(region);
 
-       assertThat(Boolean.valueOf(actualRegion), equalTo(true));
+        assertThat(Boolean.valueOf(actualRegion), equalTo(true));
 
         String numberOfEngines =
                 estimate.getNumberOfEngines();
@@ -102,7 +101,7 @@ public class CalculatorPageTest extends CommonConditions {
     }
 
     @AfterClass
-    public void deleteCookies(){
+    public void deleteCookies() {
         driver.manage().deleteAllCookies();
     }
 }
