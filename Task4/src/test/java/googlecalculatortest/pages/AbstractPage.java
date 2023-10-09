@@ -13,10 +13,9 @@ import java.time.Duration;
 
 public abstract class AbstractPage {
     protected final int WAIT_TIMEOUT_SECONDS = 10;
+    protected final JavascriptExecutor js;
     public WebDriver driver;
     protected StringUtils stringUtils = new StringUtils();
-
-    protected final JavascriptExecutor js;
 
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;
@@ -31,7 +30,7 @@ public abstract class AbstractPage {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void  callJsExecutorToClick(WebElement webElement) {
+    public void callJsExecutorToClick(WebElement webElement) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
     }
 }

@@ -43,6 +43,7 @@ public class TestListener implements ITestListener {
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
 
     }
+
     @Override
     public void onStart(ITestContext iTestContext) {
 
