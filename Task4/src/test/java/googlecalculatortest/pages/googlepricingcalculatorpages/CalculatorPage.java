@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CalculatorPage extends AbstractPage {
-
-    private final JavascriptExecutor js;
     @FindBy(css = "#tab-item-1 > div")
     private WebElement computeEngine;
     @FindBy(name = "quantity")
@@ -70,8 +68,6 @@ public class CalculatorPage extends AbstractPage {
 
     public CalculatorPage(WebDriver driver) {
         super(driver);
-        js = (JavascriptExecutor) driver;
-        PageFactory.initElements(this.driver, this);
     }
 
     @Override
@@ -96,11 +92,11 @@ public class CalculatorPage extends AbstractPage {
 
         js.executeScript("window.scrollBy(0,450)", "");
         series.click();
-        callJsExecutor(seriesOption);
+        callJsExecutorToClick(seriesOption);
 
-        callJsExecutor(machineType);
+        callJsExecutorToClick(machineType);
 
-        callJsExecutor(machine);
+        callJsExecutorToClick(machine);
 
         waitForClickability(addGPUs, Duration.ofSeconds(10L));
         addGPUs.click();
@@ -108,10 +104,7 @@ public class CalculatorPage extends AbstractPage {
         waitForClickability(GPUTypeDropdown, Duration.ofSeconds(10L));
         GPUTypeDropdown.click();
 
-
         GPUoption.click();
-
-
         numberOfGPUsDropdown.click();
 
 
@@ -127,13 +120,10 @@ public class CalculatorPage extends AbstractPage {
         SSDoption.click();
 
         datacenterLocation.click();
-
-
         waitForClickability(datacenterOption, Duration.ofSeconds(10L));
+        
         datacenterOption.click();
-
         committedUsage.click();
-
 
         waitForClickability(usageOption, Duration.ofSeconds(10L));
         usageOption.click();

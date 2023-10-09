@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class EstimatePage extends AbstractPage {
-    private final JavascriptExecutor js;
     @FindBy(css = "#compute > md-toolbar > h2 > span:nth-child(1)")
     private WebElement computeEngineSign;
     @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-toolbar/div/h2[2]")
@@ -41,6 +40,11 @@ public class EstimatePage extends AbstractPage {
     @FindBy(xpath = "//*[@id='select_462']")
     private WebElement currencyDropdown;
 
+    @FindBy(xpath = "//*[@id='input_615']")
+    private WebElement emailField;
+
+    @FindBy(xpath = "//*[@id='dialogContent_621']/form/md-dialog-actions/button[2]")
+    private WebElement sendEmailButton;
 
     @FindBy(css = "button.md-button.md-mini[title='Email Estimate']")
     private WebElement emailEstimateButton;
@@ -48,8 +52,6 @@ public class EstimatePage extends AbstractPage {
 
     protected EstimatePage(WebDriver driver, CalculatorPage calculator) {
         super(driver);
-        js = (JavascriptExecutor) driver;
-        PageFactory.initElements(calculator.driver, this);
     }
 
     @Override
@@ -102,13 +104,9 @@ public class EstimatePage extends AbstractPage {
     public EstimatePage sendEstimateInEmail(String email) {
 
         js.executeScript("window.scrollBy(0,550)", "");
-        callJsExecutor(emailEstimateButton);
-        //emailEstimateButton.click();
-        WebElement emailField = driver.findElement(By.xpath("//*[@id='input_615']"));
-        callJsExecutor(emailField);
-        // emailField.click();
+        callJsExecutorToClick(emailEstimateButton);
+        callJsExecutorToClick(emailField);
         emailField.sendKeys(email);
-        WebElement sendEmailButton = driver.findElement(By.xpath("//*[@id='dialogContent_621']/form/md-dialog-actions/button[2]"));
         sendEmailButton.click();
         return this;
     }

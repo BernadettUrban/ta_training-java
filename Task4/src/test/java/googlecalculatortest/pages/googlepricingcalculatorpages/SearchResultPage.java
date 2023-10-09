@@ -15,7 +15,6 @@ public class SearchResultPage extends AbstractPage {
 
     public SearchResultPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(this.driver, this);
     }
 
     @Override
