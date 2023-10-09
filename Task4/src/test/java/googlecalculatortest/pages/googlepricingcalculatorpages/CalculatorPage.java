@@ -92,6 +92,7 @@ public class CalculatorPage extends AbstractPage {
 
         js.executeScript("window.scrollBy(0,450)", "");
         series.click();
+
         callJsExecutorToClick(seriesOption);
 
         callJsExecutorToClick(machineType);
