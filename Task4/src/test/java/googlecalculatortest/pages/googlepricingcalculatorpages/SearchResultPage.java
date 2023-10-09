@@ -8,10 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SearchResultPage extends AbstractPage {
 
-    @FindBy(css = "#gc-wrapper > main > devsite-content > article > article > div > devsite-catalog > div > div.catalog-main > div.catalog-main-filter-controls > div > input")
-    WebElement textInput;
-    @FindBy(css = "#___gcse_0 > div > div > div > div.gsc-wrapper > div.gsc-resultsbox-visible > div > div > div.gsc-expansionArea > div:nth-child(1) > div.gs-webResult.gs-result > div.gsc-thumbnail-inside > div > a")
-    WebElement link;
+    @FindBy(css = ".catalog-filter-bar")
+    private WebElement textInput;
+    @FindBy(css =
+            "div.gsc-result:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1)")
+
+    private WebElement link;
 
     public SearchResultPage(WebDriver driver) {
         super(driver);
